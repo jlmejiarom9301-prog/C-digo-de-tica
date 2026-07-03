@@ -1,209 +1,699 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Código de Ética para Asociados de Negocio | Inter-Con</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Código de Ética para Asociados de Negocio | INTER-CON Servicios de Seguridad Privada</title>
+<meta name="description" content="Capacitación corporativa interactiva del Código de Ética para Asociados de Negocio de INTER-CON Servicios de Seguridad Privada, S.A. de C.V.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- AOS (Animate On Scroll) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
+
+<!-- Local styles -->
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="progress"><span id="progressBar"></span></div>
-  <header class="site-header" id="top">
-    <a class="brand" href="#top" aria-label="Inicio">
-      <span class="brand-mark">IC</span>
-      <span><strong>INTER-CON</strong><small>Capacitación Corporativa</small></span>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
-    <nav class="nav" id="nav">
-      <a href="#objetivo">Objetivo</a>
-      <a href="#alcance">Alcance</a>
-      <a href="#laborales">Condiciones laborales</a>
-      <a href="#seguridad">Salud y seguridad</a>
-      <a href="#etica">Ética empresarial</a>
-      <a href="#ambiente">Medio ambiente</a>
-      <a href="#denuncia">Canal de denuncia</a>
-      <a href="#compromiso">Compromiso</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero section" data-section="Inicio">
-      <div class="hero-bg"></div>
-      <div class="hero-content reveal">
-        <div class="eyebrow">Programa de cumplimiento y conducta empresarial</div>
-        <h1>Código de Ética para Asociados de Negocio</h1>
-        <p>Capacitación institucional para fortalecer relaciones comerciales basadas en confianza, responsabilidad, legalidad e integridad.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#objetivo">Comenzar capacitación</a>
-          <a class="btn secondary" href="#mapa">Ver mapa de contenidos</a>
+<!-- ===================== PROGRESS BAR ===================== -->
+<div class="progress-track" aria-hidden="true">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- ===================== TOP BAR (mobile) ===================== -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="brand-mark">IC</div>
+    <div class="brand-word">
+      <span class="brand-word-main">INTER-CON</span>
+      <span class="brand-word-sub">Seguridad Privada</span>
+    </div>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+</header>
+
+<!-- ===================== SIDE NAVIGATION ===================== -->
+<nav class="sidenav" id="sidenav" aria-label="Navegación de secciones">
+  <div class="sidenav-brand">
+    <div class="brand-mark">IC</div>
+    <div class="brand-word">
+      <span class="brand-word-main">INTER-CON</span>
+      <span class="brand-word-sub">Seguridad Privada</span>
+    </div>
+  </div>
+
+  <ul class="sidenav-list">
+    <li><a href="#inicio" class="nav-link active" data-section="inicio"><i class="fa-solid fa-house"></i><span>Bienvenida</span></a></li>
+    <li><a href="#objetivo" class="nav-link" data-section="objetivo"><i class="fa-solid fa-bullseye"></i><span>Objetivo</span></a></li>
+    <li><a href="#importancia" class="nav-link" data-section="importancia"><i class="fa-solid fa-star"></i><span>Importancia</span></a></li>
+    <li><a href="#alcance" class="nav-link" data-section="alcance"><i class="fa-solid fa-diagram-project"></i><span>Alcance</span></a></li>
+    <li><a href="#laborales" class="nav-link" data-section="laborales"><i class="fa-solid fa-people-group"></i><span>Cond. Laborales</span></a></li>
+    <li><a href="#salud" class="nav-link" data-section="salud"><i class="fa-solid fa-shield-heart"></i><span>Salud y Seguridad</span></a></li>
+    <li><a href="#etica" class="nav-link" data-section="etica"><i class="fa-solid fa-scale-balanced"></i><span>Ética Empresarial</span></a></li>
+    <li><a href="#ambiente" class="nav-link" data-section="ambiente"><i class="fa-solid fa-leaf"></i><span>Medio Ambiente</span></a></li>
+    <li><a href="#denuncia" class="nav-link" data-section="denuncia"><i class="fa-solid fa-comment-dots"></i><span>Canal de Denuncia</span></a></li>
+    <li><a href="#compromiso" class="nav-link" data-section="compromiso"><i class="fa-solid fa-handshake"></i><span>Compromiso</span></a></li>
+    <li><a href="#evaluacion" class="nav-link" data-section="evaluacion"><i class="fa-solid fa-clipboard-question"></i><span>Evaluación</span></a></li>
+    <li><a href="#constancia" class="nav-link" data-section="constancia"><i class="fa-solid fa-file-signature"></i><span>Firma y Constancia</span></a></li>
+    <li><a href="#metricas" class="nav-link" data-section="metricas"><i class="fa-solid fa-chart-pie"></i><span>Métricas</span></a></li>
+    <li><a href="#cierre" class="nav-link" data-section="cierre"><i class="fa-solid fa-flag-checkered"></i><span>Cierre</span></a></li>
+  </ul>
+
+  <div class="sidenav-footer">
+    <span>Programa de Cumplimiento</span>
+    <small>Conducta Empresarial · 2026</small>
+  </div>
+</nav>
+
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<main class="main-content">
+
+  <!-- 1. BIENVENIDA / HERO -->
+  <section id="inicio" class="section hero">
+    <div class="hero-circles" aria-hidden="true">
+      <span class="circle c1"></span>
+      <span class="circle c2"></span>
+      <span class="circle c3"></span>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-logo" data-aos="fade-down">
+        <div class="brand-mark brand-mark-lg">IC</div>
+        <div class="brand-word">
+          <span class="brand-word-main brand-word-lg">INTER-CON</span>
+          <span class="brand-word-sub">Inter-Con Servicios de Seguridad Privada, S.A. de C.V.</span>
         </div>
       </div>
-      <aside class="hero-card reveal delay-1">
-        <span class="icon-shield">◇</span>
-        <strong>Conducta empresarial</strong>
-        <p>Lineamientos aplicables a socios comerciales, proveedores, subempleados y empresas suministradoras de servicios.</p>
-      </aside>
-    </section>
-
-    <section class="section intro" id="objetivo">
-      <div class="section-head reveal">
-        <span class="section-kicker">01 · Objetivo</span>
-        <h2>Fundamentos para construir relaciones comerciales a largo plazo</h2>
-        <p>Conocer y aplicar los principios de conducta fortalece relaciones con clientes, proveedores y colaboradores.</p>
+      <p class="eyebrow" data-aos="fade-up" data-aos-delay="100">Capacitación Corporativa</p>
+      <h1 data-aos="fade-up" data-aos-delay="150">Código de Ética para<br>Asociados de Negocio</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+        Programa de cumplimiento y conducta empresarial de INTER-CON Servicios de Seguridad Privada, S.A. de C.V.
+      </p>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="250">
+        <a href="#objetivo" class="btn btn-primary">Comenzar capacitación <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#alcance" class="btn btn-ghost-light">Ver contenido</a>
       </div>
-      <div class="pillars">
-        <article class="pillar reveal"><span>01</span><h3>Confianza</h3><p>Sustentar relaciones comerciales sólidas y de largo plazo.</p></article>
-        <article class="pillar reveal delay-1"><span>02</span><h3>Cadena de valor responsable</h3><p>Operar con estándares nacionales e internacionales.</p></article>
-        <article class="pillar reveal delay-2"><span>03</span><h3>Estándares globales</h3><p>Alinear la conducta al Pacto Global de la ONU y a convenios de la OIT.</p></article>
+      <div class="hero-meta" data-aos="fade-up" data-aos-delay="300">
+        <div class="hero-meta-item"><i class="fa-solid fa-clock"></i> Duración estimada: 20-25 min</div>
+        <div class="hero-meta-item"><i class="fa-solid fa-layer-group"></i> 14 módulos</div>
+        <div class="hero-meta-item"><i class="fa-solid fa-clipboard-check"></i> Incluye evaluación y constancia</div>
       </div>
-    </section>
+    </div>
+    <a href="#objetivo" class="scroll-cue" aria-label="Desplazarse hacia abajo"><i class="fa-solid fa-chevron-down"></i></a>
+  </section>
 
-    <section class="section split" id="alcance">
-      <div class="reveal">
-        <span class="section-kicker">02 · Alcance</span>
-        <h2>Alcance de aplicación y estructura de los lineamientos</h2>
-        <p>Los socios deben asegurar que sus proveedores y empleados también cumplan los principios establecidos. Se considera la participación de socios comerciales, proveedores, subempleados y empresas suministradoras de servicios.</p>
-        <div class="audience-grid">
-          <span>Socios comerciales</span><span>Proveedores</span><span>Subempleados</span><span>Empresas suministradoras</span>
+  <!-- 2. OBJETIVO -->
+  <section id="objetivo" class="section">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-bullseye"></i> 01 · Objetivo de la capacitación</p>
+      <h2 data-aos="fade-up">Fundamentos para construir relaciones comerciales a largo plazo</h2>
+
+      <div class="two-col" data-aos="fade-up" data-aos-delay="100">
+        <p>Conocer y aplicar nuestros principios de conducta. Dar a conocer los principios y exigencias que INTER-CON espera de sus socios comerciales, proveedores, empresas suministradoras de servicios y sus empleados.</p>
+        <p>Nuestros clientes y proveedores confían en la solidez de una compañía internacional como INTER-CON. Por ello procuramos que nuestros servicios formen parte de una cadena de valor responsable.</p>
+      </div>
+
+      <div class="card-grid three" data-aos="fade-up" data-aos-delay="150">
+        <div class="stat-card">
+          <span class="stat-num">01</span>
+          <div class="stat-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h3>Confianza</h3>
+          <p>Sustenta relaciones comerciales sólidas y de largo plazo con clientes y socios.</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">02</span>
+          <div class="stat-icon"><i class="fa-solid fa-link"></i></div>
+          <h3>Cadena de valor responsable</h3>
+          <p>Servicios alineados con estándares nacionales e internacionales.</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">03</span>
+          <div class="stat-icon"><i class="fa-solid fa-globe"></i></div>
+          <h3>Estándares globales</h3>
+          <p>Basado en el Pacto Global de la ONU y las convenciones de la OIT.</p>
         </div>
       </div>
-      <div class="map-card reveal delay-1" id="mapa">
-        <h3>Lo que veremos hoy</h3>
-        <ol class="module-list">
-          <li><a href="#objetivo">Introducción</a></li>
-          <li><a href="#laborales">Condiciones laborales</a></li>
-          <li><a href="#seguridad">Salud y seguridad</a></li>
-          <li><a href="#etica">Ética en la empresa</a></li>
-          <li><a href="#ambiente">Medio ambiente</a></li>
-          <li><a href="#denuncia">Canal de denuncia</a></li>
-        </ol>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section mission">
-      <div class="glass reveal">
-        <span class="section-kicker">03 · Introducción</span>
-        <h2>Nuestra misión se sustenta en los más altos estándares globales</h2>
-        <p>Brindar servicios de seguridad y protección integral con los más altos estándares operativos, salvaguardando personas, bienes e información, para garantizar un entorno seguro, confiable y sostenible.</p>
-      </div>
-      <div class="standard-cards reveal delay-1">
-        <div><strong>Pacto Global de la ONU</strong><p>Principios relacionados con derechos humanos, trabajo, medio ambiente y anticorrupción.</p></div>
-        <div><strong>Convenios de la OIT</strong><p>Estándares de organización internacional del trabajo que sustentan el Código.</p></div>
-      </div>
-    </section>
+  <!-- 3. IMPORTANCIA -->
+  <section id="importancia" class="section alt">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-star"></i> 02 · Importancia del Código de Ética</p>
+      <h2 data-aos="fade-up">Nuestra misión se sustenta en los más altos estándares globales</h2>
 
-    <section class="section" id="laborales">
-      <div class="section-head reveal">
-        <span class="section-kicker">04 · Condiciones laborales</span>
-        <h2>Condiciones laborales justas basadas en el respeto a la dignidad humana</h2>
-        <p>El socio debe salvaguardar los derechos humanos de sus trabajadores y mantener condiciones de trabajo justas, seguras y respetuosas.</p>
+      <div class="mission-panel" data-aos="fade-up" data-aos-delay="100">
+        <h3><i class="fa-solid fa-flag"></i> Nuestra Misión</h3>
+        <p>Brindar servicios de seguridad y protección integral con los más altos estándares operativos, salvaguardando personas, bienes e información, para garantizar un entorno seguro, confiable y sostenible para nuestros clientes y colaboradores.</p>
+        <p class="mission-highlight">Estamos comprometidos con los más altos estándares éticos, sociales, laborales y medioambientales.</p>
       </div>
-      <div class="labor-layout">
-        <article class="feature-card reveal"><h3>Principio general y libre elección</h3><p>Queda prohibida cualquier forma de trabajo forzoso, obligatorio, trata de personas, servidumbre, esclavitud o trabajo involuntario.</p></article>
-        <article class="feature-card reveal delay-1"><h3>Protección a menores</h3><p>No se permite el trabajo infantil. Se restringen actividades peligrosas, nocturnas o que afecten la seguridad de personas menores de edad.</p></article>
-        <article class="metric reveal"><b>48 h</b><span>Jornada regular máxima por semana</span></article>
-        <article class="metric reveal delay-1"><b>24 h</b><span>Descanso continuo mínimo cada siete días</span></article>
-        <article class="metric reveal delay-2"><b>12 h</b><span>Máximo de horas extra voluntarias</span></article>
-      </div>
-      <div class="accordion reveal">
-        <button>Salarios y beneficios</button><div><p>Las remuneraciones deben cumplir con los salarios mínimos, horas extra, beneficios y demás prestaciones legales, además de informar al trabajador sobre su pago.</p></div>
-        <button>Trato digno</button><div><p>Debe evitarse el acoso, abuso, castigo corporal, coerción mental o física, amenazas y cualquier trato irrespetuoso.</p></div>
-        <button>No discriminación</button><div><p>Las decisiones de empleo deben basarse en criterios objetivos y no en condiciones personales o protegidas.</p></div>
-        <button>Libertad de asociación</button><div><p>Debe respetarse el derecho de asociación y negociación colectiva conforme a la legislación aplicable.</p></div>
-      </div>
-    </section>
 
-    <section class="section" id="seguridad">
-      <div class="section-head reveal">
-        <span class="section-kicker">05 · Salud y seguridad</span>
-        <h2>Un entorno de trabajo seguro mejora la calidad y la motivación</h2>
-      </div>
-      <div class="process reveal">
-        <div><span>01</span><h3>Cumplir la normativa</h3><p>Sistemas, procesos y medidas que respeten las leyes aplicables en materia laboral y sanitaria.</p></div>
-        <div><span>02</span><h3>Detectar e informar</h3><p>Identificar riesgos e informar a los colaboradores sobre condiciones de riesgo.</p></div>
-        <div><span>03</span><h3>Equipo de protección</h3><p>Proporcionar equipo de protección personal cuando corresponda.</p></div>
-        <div><span>04</span><h3>Emergencias</h3><p>Instalaciones preparadas con precauciones y protocolos de emergencia.</p></div>
-      </div>
-    </section>
-
-    <section class="section dark" id="etica">
-      <div class="section-head reveal">
-        <span class="section-kicker gold">06 · Ética empresarial</span>
-        <h2>Diez principios rectores para operar con absoluta integridad</h2>
-      </div>
-      <div class="ethics-grid">
-        <article class="reveal"><b>1</b><h3>Fidelidad a las leyes</h3><p>Cumplir siempre con leyes nacionales y aplicables.</p></article>
-        <article class="reveal"><b>2</b><h3>Integridad</h3><p>Sin soborno, corrupción, chantaje, engaño ni apropiación indebida.</p></article>
-        <article class="reveal"><b>3</b><h3>Beneficios indebidos</h3><p>No ofrecer, prometer ni aceptar sobornos.</p></article>
-        <article class="reveal"><b>4</b><h3>Competencia justa</h3><p>Actuar conforme a la ley y difundir información comercial correcta.</p></article>
-        <article class="reveal"><b>5</b><h3>Conflicto de interés</h3><p>Decisiones con independencia objetiva e intereses corporativos.</p></article>
-        <article class="reveal"><b>6</b><h3>Información confidencial</h3><p>Protección de datos personales y secretos de empresa.</p></article>
-        <article class="reveal"><b>7</b><h3>Importación y exportación</h3><p>Respetar leyes vigentes de importación, exportación y aduanas.</p></article>
-        <article class="reveal"><b>8</b><h3>Publicación de información</h3><p>Información leal, correcta y susceptible de registro.</p></article>
-        <article class="reveal"><b>9</b><h3>Propiedad intelectual</h3><p>Respetar derechos de transmisión de tecnología y conocimientos.</p></article>
-        <article class="reveal"><b>10</b><h3>Aprovisionamiento responsable</h3><p>Asegurar que materias primas no financien grupos armados.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="ambiente">
-      <div class="section-head reveal">
-        <span class="section-kicker">07 · Medio ambiente</span>
-        <h2>Responsabilidad ambiental a través de toda la cadena de valor</h2>
-        <p>Evitar impactos negativos y cuidar los recursos naturales en cada proceso.</p>
-      </div>
-      <div class="environment-cards">
-        <article class="reveal"><span>♧</span><h3>Protección del medio ambiente</h3><p>Reducir emisiones, residuos, uso de agua y consumo de energía.</p></article>
-        <article class="reveal delay-1"><span>⚠</span><h3>Sustancias peligrosas</h3><p>Identificar sustancias que implican riesgo para manipulación, transporte, almacenamiento, uso y reciclado.</p></article>
-        <article class="reveal delay-2"><span>♻</span><h3>Restricciones de productos</h3><p>Cumplir leyes y reglamentaciones sobre prohibición y restricción de sustancias.</p></article>
-      </div>
-    </section>
-
-    <section class="section denuncia" id="denuncia">
-      <div class="denuncia-content reveal">
-        <span class="section-kicker gold">08 · Canal de denuncia</span>
-        <h2>Un canal estrictamente confidencial y sin represalias</h2>
-        <p>Cualquier proveedor o socio comercial puede reportar actos contrarios al Código. La confidencialidad está garantizada.</p>
-        <div class="contact-cards">
-          <a href="mailto:codigodeetica@intercon.com.mx"><small>Correo electrónico</small><strong>codigodeetica@intercon.com.mx</strong></a>
-          <a href="tel:8003230801"><small>Teléfono</small><strong>800 323 0801</strong></a>
+      <div class="two-col-asym" data-aos="fade-up" data-aos-delay="150">
+        <div>
+          <h3 class="h3-underline">¿Por qué existe este Código?</h3>
+          <p>Resume nuestras expectativas sobre las condiciones de trabajo, salud, seguridad, medio ambiente y ética que deberán cumplir nuestros proveedores y empresas suministradoras de servicios.</p>
+        </div>
+        <div class="mini-card-stack">
+          <div class="mini-card">
+            <i class="fa-solid fa-earth-americas"></i>
+            <div>
+              <h4>Pacto Global de la ONU</h4>
+              <p>Principios internacionales en derechos humanos, trabajo, medio ambiente y anticorrupción.</p>
+            </div>
+          </div>
+          <div class="mini-card">
+            <i class="fa-solid fa-building-columns"></i>
+            <div>
+              <h4>Convenciones de la OIT</h4>
+              <p>Estándares de la Organización Internacional del Trabajo que sustentan este Código.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="quiz">
-      <div class="section-head reveal">
-        <span class="section-kicker">09 · Refuerzo</span>
-        <h2>Verificación rápida de comprensión</h2>
-        <p>Responde estas preguntas para cerrar la capacitación.</p>
+  <!-- 4. ALCANCE -->
+  <section id="alcance" class="section">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-diagram-project"></i> 03 · Alcance</p>
+      <h2 data-aos="fade-up">Alcance de aplicación y estructura de nuestros lineamientos</h2>
+
+      <div class="two-col-asym reverse" data-aos="fade-up" data-aos-delay="100">
+        <div class="scope-diagram" aria-hidden="false">
+          <div class="scope-ring r1"></div>
+          <div class="scope-ring r2"></div>
+          <div class="scope-ring r3"></div>
+          <div class="scope-center"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="scope-node n1"><i class="fa-solid fa-briefcase"></i> Socios comerciales</div>
+          <div class="scope-node n2"><i class="fa-solid fa-id-badge"></i> Sus empleados</div>
+          <div class="scope-node n3"><i class="fa-solid fa-truck-field"></i> Proveedores</div>
+          <div class="scope-node n4"><i class="fa-solid fa-industry"></i> Empresas suministradoras de servicios</div>
+        </div>
+        <div>
+          <h3 class="h3-underline">A quién aplica</h3>
+          <p>Los socios deben asegurar que sus proveedores y empleados también cumplan estos principios. Cuando otras leyes prevean regulaciones distintas, éstas tendrán preferencia. El cumplimiento es criterio para elegir y conservar a un socio.</p>
+        </div>
       </div>
-      <div class="quiz reveal">
-        <div class="question active" data-answer="b"><h3>1. ¿El Código permite el trabajo forzoso u obligatorio?</h3><button data-option="a">Sí</button><button data-option="b">No</button><p class="feedback"></p></div>
-        <div class="question" data-answer="a"><h3>2. ¿La confidencialidad aplica al canal de denuncia?</h3><button data-option="a">Sí</button><button data-option="b">No</button><p class="feedback"></p></div>
-        <div class="question" data-answer="a"><h3>3. ¿La información confidencial y los datos personales deben protegerse?</h3><button data-option="a">Sí</button><button data-option="b">No</button><p class="feedback"></p></div>
-        <button class="btn primary" id="nextQuestion">Siguiente</button>
+
+      <h3 class="h3-underline center" data-aos="fade-up">Lo que veremos hoy</h3>
+      <div class="card-grid six" data-aos="fade-up" data-aos-delay="100">
+        <a href="#objetivo" class="mini-nav-card"><span>01</span>Introducción</a>
+        <a href="#laborales" class="mini-nav-card"><span>02</span>Condiciones laborales</a>
+        <a href="#salud" class="mini-nav-card"><span>03</span>Salud y seguridad</a>
+        <a href="#etica" class="mini-nav-card"><span>04</span>Ética en la empresa</a>
+        <a href="#ambiente" class="mini-nav-card"><span>05</span>Medio ambiente</a>
+        <a href="#denuncia" class="mini-nav-card"><span>06</span>Canal de denuncia</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section compromiso" id="compromiso">
-      <div class="commitment-card reveal">
-        <span class="section-kicker">10 · Cierre</span>
-        <h2>Formalización de nuestro compromiso conjunto</h2>
-        <p>Habiendo leído y entendido el presente Código de conducta, el asociado de negocio asegura que las condiciones descritas fueron comprendidas.</p>
-        <div class="signature-row"><span>Línea para nombre y firma</span><span>Línea para cargo / organización</span></div>
-        <button class="btn primary" id="completeBtn">Acepto el compromiso</button>
-        <p class="complete-message" id="completeMessage">Capacitación marcada como completada en este navegador.</p>
+  <!-- 5. CONDICIONES LABORALES -->
+  <section id="laborales" class="section alt">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-people-group"></i> 04 · Condiciones Laborales</p>
+      <h2 data-aos="fade-up">Condiciones laborales justas basadas en el respeto a la dignidad humana</h2>
+
+      <div class="two-col" data-aos="fade-up" data-aos-delay="100">
+        <div class="highlight-box gold">
+          <h4><i class="fa-solid fa-scale-unbalanced"></i> Principio General y Libre Elección</h4>
+          <p>El socio está obligado a salvaguardar los derechos humanos de sus trabajadores y tratarlos con dignidad y respeto (tiempo parcial, temporales, pasantes, fijos o cualquier otra mano de obra).</p>
+        </div>
+        <div class="highlight-box dark">
+          <h4><i class="fa-solid fa-circle-exclamation"></i> Prohibición absoluta</h4>
+          <p>No se permiten los trabajos forzados, la esclavitud ni cualquier trabajo realizado de manera involuntaria bajo amenaza de sanción. Todo trabajo debe ser voluntario, y los empleados deben poder finalizar su relación laboral cuando lo deseen.</p>
+        </div>
       </div>
-    </section>
-  </main>
 
-  <footer class="footer">
-    <p>Inter-Con Servicios de Seguridad Privada · Código de Ética para Asociados de Negocio</p>
-    <a href="#top">Volver arriba</a>
-  </footer>
+      <h3 class="h3-underline" data-aos="fade-up">Protección a Menores</h3>
+      <p data-aos="fade-up">No se permite el trabajo infantil.</p>
+      <div class="card-grid two" data-aos="fade-up" data-aos-delay="100">
+        <div class="age-card">
+          <span class="age-num">&lt; 15 <small>años</small></span>
+          <h4>Prohibición total</h4>
+          <p>Personas en edad escolar o por debajo de la edad mínima legal no deben realizar ningún tipo de ocupación.</p>
+        </div>
+        <div class="age-card">
+          <span class="age-num">&lt; 18 <small>años</small></span>
+          <h4>Restricción de riesgo</h4>
+          <p>No deben realizar trabajos que puedan dañar su salud física o mental, ni poner en peligro su seguridad o su moral. Requieren medidas especiales de protección.</p>
+        </div>
+      </div>
 
-  <script src="script.js"></script>
+      <h3 class="h3-underline" data-aos="fade-up">Parámetros operativos de horario</h3>
+      <div class="card-grid three" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-card metric">
+          <div class="stat-icon"><i class="fa-solid fa-business-time"></i></div>
+          <span class="metric-num">48h</span>
+          <p>Jornada regular máxima por semana.</p>
+        </div>
+        <div class="stat-card metric">
+          <div class="stat-icon"><i class="fa-solid fa-calendar-days"></i></div>
+          <span class="metric-num">24h</span>
+          <p>De descanso como mínimo cada siete días.</p>
+        </div>
+        <div class="stat-card metric">
+          <div class="stat-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+          <span class="metric-num">12h</span>
+          <p>Máximo de horas extra voluntarias.</p>
+        </div>
+      </div>
+
+      <h3 class="h3-underline" data-aos="fade-up">Condiciones generales</h3>
+      <div class="accordion" data-aos="fade-up" data-aos-delay="100">
+        <div class="accordion-item">
+          <button class="accordion-trigger"><i class="fa-solid fa-sack-dollar"></i> Salarios y beneficios <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel">
+            <p>Remuneración conforme a las leyes nacionales (salario mínimo, horas extra, beneficios). Una remuneración justa permite participar en la vida social, cultural y política.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><i class="fa-solid fa-user-shield"></i> Trato digno <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel">
+            <p>Cero tolerancia al acoso, abuso sexual, castigo corporal, coacción o explotación.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><i class="fa-solid fa-people-arrows"></i> Libertad de asociación <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel">
+            <p>Derecho a la asociación y reunión, defendiendo los intereses de los empleados.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><i class="fa-solid fa-people-roof"></i> No discriminación <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel">
+            <p>Las decisiones de empleo se basan en criterios objetivos. Prohibida la discriminación por:</p>
+            <div class="tag-grid">
+              <span><i class="fa-solid fa-check"></i> Raza</span>
+              <span><i class="fa-solid fa-check"></i> Color de piel</span>
+              <span><i class="fa-solid fa-check"></i> Edad</span>
+              <span><i class="fa-solid fa-check"></i> Sexo</span>
+              <span><i class="fa-solid fa-check"></i> Orientación sexual</span>
+              <span><i class="fa-solid fa-check"></i> Origen étnico</span>
+              <span><i class="fa-solid fa-check"></i> Discapacidad</span>
+              <span><i class="fa-solid fa-check"></i> Embarazo</span>
+              <span><i class="fa-solid fa-check"></i> Convicción política</span>
+              <span><i class="fa-solid fa-check"></i> Convicción religiosa</span>
+              <span><i class="fa-solid fa-check"></i> Pertenencia a un sindicato</span>
+              <span><i class="fa-solid fa-check"></i> Estado civil</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SALUD Y SEGURIDAD -->
+  <section id="salud" class="section">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-shield-heart"></i> 05 · Salud y Seguridad</p>
+      <h2 data-aos="fade-up">Un entorno de trabajo seguro mejora la calidad y la motivación</h2>
+
+      <div class="timeline" data-aos="fade-up" data-aos-delay="100">
+        <div class="timeline-step">
+          <div class="timeline-icon"><i class="fa-solid fa-file-shield"></i></div>
+          <span class="timeline-num">01</span>
+          <h4>Cumplir la normativa</h4>
+          <p>Sistemas, procesos y medidas que respeten las prescripciones legales de protección laboral y sanitaria.</p>
+        </div>
+        <div class="timeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="timeline-step">
+          <div class="timeline-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <span class="timeline-num">02</span>
+          <h4>Detectar e informar</h4>
+          <p>Identificar y valorar los riesgos, informar a los empleados e instruirlos sobre cómo actuar de forma segura.</p>
+        </div>
+        <div class="timeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="timeline-step">
+          <div class="timeline-icon"><i class="fa-solid fa-hard-hat"></i></div>
+          <span class="timeline-num">03</span>
+          <h4>Equipo de protección</h4>
+          <p>Cuando los peligros no puedan controlarse, proveer equipo de protección personal (EPP) apropiado.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box dark alert-box" data-aos="fade-up" data-aos-delay="150">
+        <h4><i class="fa-solid fa-bell"></i> Precauciones en caso de emergencia</h4>
+        <p>Deben detectarse y evaluarse las posibles situaciones de emergencia. Sus consecuencias se minimizan introduciendo planes de emergencia y procedimientos de comunicación.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. ÉTICA EMPRESARIAL -->
+  <section id="etica" class="section alt">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-scale-balanced"></i> 06 · Ética Empresarial</p>
+      <h2 data-aos="fade-up">Diez principios rectores para operar con absoluta integridad</h2>
+
+      <div class="accordion numbered" data-aos="fade-up" data-aos-delay="100">
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">1</span><i class="fa-solid fa-gavel"></i> Fidelidad a las leyes <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>Cumplir siempre las leyes nacionales y las prescripciones aplicables.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">2</span><i class="fa-solid fa-shield-halved"></i> Integridad <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>Sin soborno, corrupción, chantaje, engaño ni malversación. Operaciones transparentes.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">3</span><i class="fa-solid fa-hand-holding-dollar"></i> Beneficios indebidos <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>No ofrecer, prometer ni aceptar sobornos. Cumplir normas anticorrupción.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">4</span><i class="fa-solid fa-balance-scale"></i> Competencia justa <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>Competir con apego a la ley; evitar difundir información comercial sensible.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">5</span><i class="fa-solid fa-people-arrows"></i> Conflicto de interés <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>Decisiones por consideraciones objetivas, no intereses personales. (Firma de formulario requerida).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">6</span><i class="fa-solid fa-lock"></i> Información confidencial <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>Protección de datos personales y secretos de la empresa de manera lícita.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">7</span><i class="fa-solid fa-ship"></i> Importación / exportación <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>Respetar las leyes vigentes de importación, exportación y aduanas.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">8</span><i class="fa-solid fa-file-circle-check"></i> Publicación de información <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>Veracidad en la información; cero tolerancia a la falsificación de registros.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">9</span><i class="fa-solid fa-lightbulb"></i> Propiedad intelectual <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>Respetar derechos en la transferencia de tecnología y conocimientos.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger"><span class="num">10</span><i class="fa-solid fa-hand-holding-seedling"></i> Aprovisionamiento responsable <i class="fa-solid fa-chevron-down chev"></i></button>
+          <div class="accordion-panel"><p>Asegurar que materias primas no financien grupos armados que violen derechos humanos.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. MEDIO AMBIENTE -->
+  <section id="ambiente" class="section">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-leaf"></i> 07 · Medio Ambiente</p>
+      <h2 data-aos="fade-up">Responsabilidad ambiental a través de toda la cadena de valor</h2>
+      <p class="section-lead" data-aos="fade-up" data-aos-delay="50">Evitar impactos negativos y cuidar los recursos naturales en cada proceso.</p>
+
+      <div class="card-grid three" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-card eco">
+          <div class="stat-icon"><i class="fa-solid fa-seedling"></i></div>
+          <h3>01 Protección del medio ambiente</h3>
+          <p>Sistemas, medidas y permisos para cumplir la normativa ambiental, e instruir a los trabajadores sobre cómo evitar riesgos.</p>
+        </div>
+        <div class="stat-card eco">
+          <div class="stat-icon"><i class="fa-solid fa-flask-vial"></i></div>
+          <h3>02 Sustancias peligrosas</h3>
+          <p>Identificar sustancias peligrosas y manejarlas de forma segura en su tratamiento, transporte, almacenamiento, uso y reciclado.</p>
+        </div>
+        <div class="stat-card eco">
+          <div class="stat-icon"><i class="fa-solid fa-recycle"></i></div>
+          <h3>03 Restricciones de productos</h3>
+          <p>Cumplir las leyes y las indicaciones del cliente sobre sustancias restringidas, e identificar lo que deba reciclarse y eliminarse.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CANAL DE DENUNCIA -->
+  <section id="denuncia" class="section dark-section">
+    <div class="section-inner">
+      <p class="section-tag light" data-aos="fade-up"><i class="fa-solid fa-comment-dots"></i> 08 · Canal de Denuncia</p>
+      <h2 class="light" data-aos="fade-up">Un canal de denuncia estrictamente confidencial y sin represalias</h2>
+
+      <div class="denuncia-layout" data-aos="fade-up" data-aos-delay="100">
+        <div class="denuncia-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          <h3 class="light">Nuestro Canal Ético</h3>
+          <p class="light">Cualquier proveedor o socio comercial puede reportar los actos que violen este Código. La confidencialidad está garantizada.</p>
+        </div>
+      </div>
+
+      <div class="card-grid two" data-aos="fade-up" data-aos-delay="150">
+        <div class="contact-card">
+          <span class="contact-label"><i class="fa-solid fa-envelope"></i> Correo electrónico</span>
+          <a href="mailto:codigodeetica@intercon.com.mx" class="contact-value">codigodeetica@intercon.com.mx</a>
+        </div>
+        <div class="contact-card">
+          <span class="contact-label"><i class="fa-solid fa-phone"></i> Teléfono</span>
+          <span class="contact-value">800 323 0801</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. COMPROMISO FINAL -->
+  <section id="compromiso" class="section alt">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-handshake"></i> 09 · Compromiso Final</p>
+      <h2 data-aos="fade-up">Formalización de nuestro compromiso conjunto</h2>
+
+      <div class="commitment-panel" data-aos="fade-up" data-aos-delay="100">
+        <div class="brand-logo-inline">
+          <div class="brand-mark">IC</div>
+          <div class="brand-word">
+            <span class="brand-word-main">INTER-CON</span>
+            <span class="brand-word-sub">Inter-Con Servicios de Seguridad Privada, S.A. de C.V.</span>
+          </div>
+        </div>
+        <h4>Compromiso del asociado</h4>
+        <p>Habiendo leído y entendido el presente <strong>Código de conducta</strong> que INTER-CON tiene para sus socios, clientes y proveedores, asumo apegarme a las condiciones descritas en el mismo, firmando de enterado y aceptado.</p>
+        <a href="#constancia" class="btn btn-primary">Firmar mi constancia demo <i class="fa-solid fa-signature"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. EVALUACIÓN DEMO -->
+  <section id="evaluacion" class="section">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-clipboard-question"></i> 10 · Evaluación demo</p>
+      <h2 data-aos="fade-up">Comprueba tu comprensión del Código de Ética</h2>
+      <p class="section-lead" data-aos="fade-up" data-aos-delay="50">Responde las siguientes preguntas de opción múltiple. Este cuestionario es una <strong>demostración funcional</strong>; las preguntas finales serán validadas por el equipo de Compliance.</p>
+
+      <form id="quizForm" class="quiz" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="quiz-question" data-correct="b">
+          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
+          <h4>1. Según el Código, ¿cuál es la jornada laboral regular máxima por semana?</h4>
+          <label class="quiz-option"><input type="radio" name="q1" value="a"> 40 horas</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="b"> 48 horas</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="c"> 60 horas</label>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="c">
+          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
+          <h4>2. ¿Cuál es la edad mínima por debajo de la cual está prohibido totalmente cualquier tipo de ocupación?</h4>
+          <label class="quiz-option"><input type="radio" name="q2" value="a"> 12 años</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="b"> 14 años</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="c"> 15 años</label>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="a">
+          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
+          <h4>3. De acuerdo con los principios de Ética Empresarial, ¿qué se debe hacer ante un posible conflicto de interés?</h4>
+          <label class="quiz-option"><input type="radio" name="q3" value="a"> Tomar decisiones por consideraciones objetivas y firmar el formulario correspondiente</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="b"> Resolverlo de manera informal sin documentarlo</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="c"> Ignorarlo si no afecta directamente a la empresa</label>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="b">
+          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
+          <h4>4. ¿A través de qué medios se puede reportar una violación al Código de Ética?</h4>
+          <label class="quiz-option"><input type="radio" name="q4" value="a"> Únicamente en juntas presenciales</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="b"> Correo electrónico o teléfono del Canal Ético</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="c"> No existe un canal formal</label>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="c">
+          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
+          <h4>5. En materia ambiental, ¿qué se espera de los socios comerciales de INTER-CON?</h4>
+          <label class="quiz-option"><input type="radio" name="q5" value="a"> No tienen responsabilidad ambiental alguna</label>
+          <label class="quiz-option"><input type="radio" name="q5" value="b"> Solo deben reportar accidentes graves</label>
+          <label class="quiz-option"><input type="radio" name="q5" value="c"> Cumplir la normativa, manejar sustancias peligrosas de forma segura y cumplir restricciones de producto</label>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="quizSubmit">Calcular resultado <i class="fa-solid fa-check"></i></button>
+      </form>
+
+      <div id="quizResult" class="quiz-result hidden">
+        <div class="quiz-result-circle">
+          <span id="quizScoreNum">0%</span>
+        </div>
+        <div>
+          <h3 id="quizResultTitle">Resultado</h3>
+          <p id="quizResultMsg"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. FIRMA Y CONSTANCIA DEMO -->
+  <section id="constancia" class="section alt">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-file-signature"></i> 11 · Firma y constancia demo</p>
+      <h2 data-aos="fade-up">Genera tu constancia demo de capacitación</h2>
+      <div class="demo-banner" data-aos="fade-up" data-aos-delay="50">
+        <i class="fa-solid fa-flask"></i> Módulo demostrativo: en producción se integrará con SharePoint, Power Automate o una base de datos corporativa para el registro y firma oficiales.
+      </div>
+
+      <div class="constancia-layout" data-aos="fade-up" data-aos-delay="100">
+        <form id="constanciaForm" class="constancia-form">
+          <label>Nombre completo
+            <input type="text" id="ccNombre" placeholder="Ej. Juan Pérez López" required>
+          </label>
+          <label>Correo electrónico
+            <input type="email" id="ccCorreo" placeholder="nombre@empresa.com" required>
+          </label>
+          <label>Área
+            <select id="ccArea" required>
+              <option value="">Selecciona un área</option>
+              <option>Dirección</option>
+              <option>Jurídico</option>
+              <option>Compliance</option>
+              <option>Recursos Humanos</option>
+              <option>Operaciones</option>
+              <option>Administración</option>
+              <option>Personal Operativo</option>
+            </select>
+          </label>
+
+          <label>Firma
+            <div class="signature-wrap">
+              <canvas id="signaturePad"></canvas>
+            </div>
+          </label>
+          <div class="signature-actions">
+            <button type="button" id="clearSignature" class="btn btn-ghost small">Borrar firma</button>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Generar constancia demo <i class="fa-solid fa-file-arrow-down"></i></button>
+        </form>
+
+        <div class="constancia-preview-wrap">
+          <div id="constanciaPreview" class="constancia-preview">
+            <div class="cp-header">
+              <div class="brand-mark">IC</div>
+              <div class="brand-word">
+                <span class="brand-word-main">INTER-CON</span>
+                <span class="brand-word-sub">Seguridad Privada</span>
+              </div>
+            </div>
+            <h3>Constancia demo de capacitación</h3>
+            <p class="cp-subtitle">Código de Ética para Asociados de Negocio</p>
+            <div class="cp-row"><span>Nombre:</span><strong id="cpNombre">—</strong></div>
+            <div class="cp-row"><span>Correo:</span><strong id="cpCorreo">—</strong></div>
+            <div class="cp-row"><span>Área:</span><strong id="cpArea">—</strong></div>
+            <div class="cp-row"><span>Calificación:</span><strong id="cpScore">—</strong></div>
+            <div class="cp-row"><span>Fecha:</span><strong id="cpFecha">—</strong></div>
+            <div class="cp-signature">
+              <span>Firma</span>
+              <img id="cpSignatureImg" alt="Firma del asociado">
+            </div>
+            <p class="cp-disclaimer">Documento generado en modo demostración — sin validez oficial hasta su integración con el sistema de gestión documental de INTER-CON.</p>
+          </div>
+          <button type="button" id="downloadPdf" class="btn btn-ghost" disabled>Descargar constancia en PDF <i class="fa-solid fa-download"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. MÉTRICAS DEMO -->
+  <section id="metricas" class="section dark-section">
+    <div class="section-inner">
+      <p class="section-tag light" data-aos="fade-up"><i class="fa-solid fa-chart-pie"></i> 12 · Métricas demo</p>
+      <h2 class="light" data-aos="fade-up">Panel de resultados — vista demo del potencial del sistema</h2>
+      <div class="demo-banner dark" data-aos="fade-up" data-aos-delay="50">
+        <i class="fa-solid fa-flask"></i> Los datos mostrados en este panel son simulados. Ilustran el tipo de reporte que podría generarse al conectar con Power BI u otra fuente de datos real.
+      </div>
+
+      <div class="kpi-grid" data-aos="fade-up" data-aos-delay="100">
+        <div class="kpi-card">
+          <i class="fa-solid fa-users"></i>
+          <span class="kpi-num" data-target="1248">0</span>
+          <p>Participantes capacitados</p>
+        </div>
+        <div class="kpi-card">
+          <i class="fa-solid fa-percent"></i>
+          <span class="kpi-num" data-target="91" data-suffix="%">0</span>
+          <p>Promedio de calificación</p>
+        </div>
+        <div class="kpi-card">
+          <i class="fa-solid fa-circle-check"></i>
+          <span class="kpi-num" data-target="86" data-suffix="%">0</span>
+          <p>Aprobados</p>
+        </div>
+        <div class="kpi-card">
+          <i class="fa-solid fa-hourglass-half"></i>
+          <span class="kpi-num" data-target="14" data-suffix="%">0</span>
+          <p>Pendientes</p>
+        </div>
+        <div class="kpi-card">
+          <i class="fa-solid fa-file-signature"></i>
+          <span class="kpi-num" data-target="812">0</span>
+          <p>Documentos firmados generados</p>
+        </div>
+      </div>
+
+      <div class="chart-grid" data-aos="fade-up" data-aos-delay="150">
+        <div class="chart-card">
+          <h4>Avance por área</h4>
+          <canvas id="chartAreas"></canvas>
+        </div>
+        <div class="chart-card">
+          <h4>Preguntas con mayor error</h4>
+          <canvas id="chartErrors"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. CIERRE -->
+  <section id="cierre" class="section hero closing">
+    <div class="hero-circles" aria-hidden="true">
+      <span class="circle c1"></span>
+      <span class="circle c2"></span>
+    </div>
+    <div class="hero-inner">
+      <i class="fa-solid fa-shield-halved closing-icon" data-aos="zoom-in"></i>
+      <h2 data-aos="fade-up">Comprometidos con los más altos estándares éticos</h2>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Código de Ética para Asociados de Negocio · INTER-CON Servicios de Seguridad Privada, S.A. de C.V.
+      </p>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="150">
+        <a href="#inicio" class="btn btn-primary">Volver al inicio <i class="fa-solid fa-arrow-up"></i></a>
+        <a href="mailto:codigodeetica@intercon.com.mx" class="btn btn-ghost-light">Contactar Canal Ético</a>
+      </div>
+      <footer class="site-footer">
+        <p>© 2026 INTER-CON Servicios de Seguridad Privada, S.A. de C.V. — Micrositio de capacitación (demo).</p>
+        <p class="footer-fine">Este material apoya la capacitación presencial y sirve como consulta de referencia. No sustituye al documento oficial del Código de Ética.</p>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/5.1.1/signature_pad.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
