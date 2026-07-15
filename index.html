@@ -56,6 +56,7 @@
     <li><a href="#objetivo" class="nav-link" data-section="objetivo"><i class="fa-solid fa-bullseye"></i><span>Objetivo</span></a></li>
     <li><a href="#importancia" class="nav-link" data-section="importancia"><i class="fa-solid fa-star"></i><span>Importancia</span></a></li>
     <li><a href="#alcance" class="nav-link" data-section="alcance"><i class="fa-solid fa-diagram-project"></i><span>Alcance</span></a></li>
+    <li><a href="#modulos" class="nav-link" data-section="modulos"><i class="fa-solid fa-clapperboard"></i><span>Módulos del curso</span></a></li>
     <li><a href="#laborales" class="nav-link" data-section="laborales"><i class="fa-solid fa-people-group"></i><span>Cond. Laborales</span></a></li>
     <li><a href="#salud" class="nav-link" data-section="salud"><i class="fa-solid fa-shield-heart"></i><span>Salud y Seguridad</span></a></li>
     <li><a href="#etica" class="nav-link" data-section="etica"><i class="fa-solid fa-scale-balanced"></i><span>Ética Empresarial</span></a></li>
@@ -214,6 +215,23 @@
         <a href="#etica" class="mini-nav-card"><span>04</span>Ética en la empresa</a>
         <a href="#ambiente" class="mini-nav-card"><span>05</span>Medio ambiente</a>
         <a href="#denuncia" class="mini-nav-card"><span>06</span>Canal de denuncia</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÓDULOS DEL CURSO (100% generado desde COURSE_CONFIG, ver assets/js/course-config.js) -->
+  <section id="modulos" class="section">
+    <div class="section-inner">
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-clapperboard"></i> Módulos del curso</p>
+      <h2 data-aos="fade-up">Recorre la capacitación en video, módulo por módulo</h2>
+      <p class="section-lead" data-aos="fade-up" data-aos-delay="50">Selecciona un módulo para ver su video, sus puntos clave y el contenido de referencia completo. Tu avance se guarda automáticamente.</p>
+
+      <div class="module-grid" id="modulosGrid" data-aos="fade-up" data-aos-delay="100">
+        <!-- Tarjetas de módulo generadas dinámicamente por app.js -->
+      </div>
+
+      <div class="module-player" id="moduloPlayer" data-aos="fade-up" data-aos-delay="150">
+        <!-- Reproductor + contenido del módulo activo, generado dinámicamente por app.js -->
       </div>
     </div>
   </section>
@@ -483,53 +501,9 @@
       <p class="section-lead" data-aos="fade-up" data-aos-delay="50">Responde las siguientes preguntas de opción múltiple. Este cuestionario es una <strong>demostración funcional</strong>; las preguntas finales serán validadas por el equipo de Compliance.</p>
 
       <form id="quizForm" class="quiz" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="quiz-question" data-correct="b">
-          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
-          <h4>1. Según el Código, ¿cuál es la jornada laboral regular máxima por semana?</h4>
-          <label class="quiz-option"><input type="radio" name="q1" value="a"> 40 horas</label>
-          <label class="quiz-option"><input type="radio" name="q1" value="b"> 48 horas</label>
-          <label class="quiz-option"><input type="radio" name="q1" value="c"> 60 horas</label>
-          <div class="quiz-feedback"></div>
+        <div id="quizContainer">
+          <!-- Preguntas generadas dinámicamente desde COURSE_CONFIG.evaluacion (assets/js/course-config.js) -->
         </div>
-
-        <div class="quiz-question" data-correct="c">
-          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
-          <h4>2. ¿Cuál es la edad mínima por debajo de la cual está prohibido totalmente cualquier tipo de ocupación?</h4>
-          <label class="quiz-option"><input type="radio" name="q2" value="a"> 12 años</label>
-          <label class="quiz-option"><input type="radio" name="q2" value="b"> 14 años</label>
-          <label class="quiz-option"><input type="radio" name="q2" value="c"> 15 años</label>
-          <div class="quiz-feedback"></div>
-        </div>
-
-        <div class="quiz-question" data-correct="a">
-          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
-          <h4>3. De acuerdo con los principios de Ética Empresarial, ¿qué se debe hacer ante un posible conflicto de interés?</h4>
-          <label class="quiz-option"><input type="radio" name="q3" value="a"> Tomar decisiones por consideraciones objetivas y firmar el formulario correspondiente</label>
-          <label class="quiz-option"><input type="radio" name="q3" value="b"> Resolverlo de manera informal sin documentarlo</label>
-          <label class="quiz-option"><input type="radio" name="q3" value="c"> Ignorarlo si no afecta directamente a la empresa</label>
-          <div class="quiz-feedback"></div>
-        </div>
-
-        <div class="quiz-question" data-correct="b">
-          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
-          <h4>4. ¿A través de qué medios se puede reportar una violación al Código de Ética?</h4>
-          <label class="quiz-option"><input type="radio" name="q4" value="a"> Únicamente en juntas presenciales</label>
-          <label class="quiz-option"><input type="radio" name="q4" value="b"> Correo electrónico o teléfono del Canal Ético</label>
-          <label class="quiz-option"><input type="radio" name="q4" value="c"> No existe un canal formal</label>
-          <div class="quiz-feedback"></div>
-        </div>
-
-        <div class="quiz-question" data-correct="c">
-          <span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
-          <h4>5. En materia ambiental, ¿qué se espera de los socios comerciales de INTER-CON?</h4>
-          <label class="quiz-option"><input type="radio" name="q5" value="a"> No tienen responsabilidad ambiental alguna</label>
-          <label class="quiz-option"><input type="radio" name="q5" value="b"> Solo deben reportar accidentes graves</label>
-          <label class="quiz-option"><input type="radio" name="q5" value="c"> Cumplir la normativa, manejar sustancias peligrosas de forma segura y cumplir restricciones de producto</label>
-          <div class="quiz-feedback"></div>
-        </div>
-
-        <button type="submit" class="btn btn-primary" id="quizSubmit">Calcular resultado <i class="fa-solid fa-check"></i></button>
       </form>
 
       <div id="quizResult" class="quiz-result hidden">
@@ -694,6 +668,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/5.1.1/signature_pad.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="script.js"></script>
+
+<!-- Configuración editable del proyecto: SIEMPRE antes de app.js -->
+<script src="assets/js/api-config.js"></script>
+<script src="assets/js/course-config.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

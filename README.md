@@ -10,15 +10,39 @@ servidor ni backend — y está lista para publicarse en GitHub Pages.
 
 ```text
 codigo-etica-landing/
-├── index.html          # Contenido y estructura de las 14 secciones
-├── styles.css           # Estilos, paleta corporativa y responsive
-├── script.js             # Navegación, acordeones, quiz, firma, PDF, dashboard
+├── index.html            # Estructura y secciones (contenido de módulos/quiz es dinámico)
+├── styles.css             # Estilos, paleta corporativa y responsive
+├── app.js                  # Motor de la app: NO contiene URLs, textos ni preguntas
 ├── README.md
 └── assets/
-    ├── images/           # Ilustraciones propias (SVG) + notas de reemplazo
-    ├── icons/             # Íconos SVG propios (el resto usa Font Awesome CDN)
-    └── animations/       # Carpeta reservada para GIFs/Lottie ligeros
+    ├── images/             # Ilustraciones propias (SVG) + notas de reemplazo
+    ├── icons/               # Íconos SVG propios (el resto usa Font Awesome CDN)
+    ├── animations/         # Carpeta reservada para GIFs/Lottie ligeros
+    └── js/
+        ├── api-config.js    # ÚNICO lugar con URLs de API / Power Automate
+        └── course-config.js # ÚNICO lugar con módulos, videos, textos y preguntas
 ```
+
+## Arquitectura de configuración (léelo antes de editar nada)
+
+Este proyecto separa **configuración** (qué se muestra) de **lógica** (cómo se
+muestra), para que dar mantenimiento sea seguro y no requiera tocar código:
+
+- **`assets/js/api-config.js`** — las 5 URLs de los servicios (Power Automate
+  u otra API). Es el único archivo del proyecto donde deben vivir URLs de API.
+- **`assets/js/course-config.js`** — nombre del curso, calificación mínima,
+  máximo de intentos, los 6 módulos (título, descripción, video, puntos
+  clave, recursos) y las preguntas de la evaluación. También define
+  `window.APP_MODE` ("demo" o "production").
+- **`app.js`** — solo lógica. Lee ambos archivos de configuración y genera
+  dinámicamente las tarjetas de módulo, el reproductor, la evaluación y la
+  constancia. **Nunca** contiene URLs, títulos ni preguntas escritos a mano.
+- **`index.html`** — contiene contenedores vacíos (`#modulosGrid`,
+  `#moduloPlayer`, `#quizContainer`) que `app.js` llena en tiempo de
+  ejecución. No hay 6 módulos ni preguntas repetidas en el HTML.
+
+Ambos archivos de `assets/js/` deben cargarse **antes** que `app.js` (así
+está ya configurado en `index.html`).
 
 ## Contenido incluido
 
@@ -26,20 +50,24 @@ codigo-etica-landing/
 2. Objetivo de la capacitación
 3. Importancia del Código de Ética
 4. Alcance
-5. Condiciones Laborales
-6. Salud y Seguridad
-7. Ética Empresarial (10 principios rectores)
-8. Medio Ambiente
-9. Canal de Denuncia
-10. Compromiso Final
-11. Evaluación demo (quiz con cálculo automático de resultado)
-12. Firma y constancia demo (firma en pantalla + PDF)
-13. Métricas demo (dashboard mockup)
-14. Cierre
+5. **Módulos del curso** (video + puntos clave, 100% generado desde `course-config.js`)
+6. Condiciones Laborales
+7. Salud y Seguridad
+8. Ética Empresarial (10 principios rectores)
+9. Medio Ambiente
+10. Canal de Denuncia
+11. Compromiso Final
+12. Evaluación (quiz dinámico con cálculo automático de resultado)
+13. Firma y constancia demo (firma en pantalla + PDF / API)
+14. Métricas demo (dashboard mockup)
+15. Cierre
 
-El contenido de las secciones 1 a 10 fue tomado y reorganizado visualmente a
-partir de `Inter-Con_Ethics_Blueprint.pptx`, respetando su sentido original.
-No se agregó legislación ni obligaciones no mencionadas en la presentación.
+El contenido fue tomado y reorganizado visualmente a partir de
+`Inter-Con_Ethics_Blueprint.pptx`, respetando su sentido original. No se
+agregó legislación ni obligaciones no mencionadas en la presentación. Los
+textos de las secciones 6 a 10 viven en `index.html`; los textos, videos y
+preguntas de los 6 módulos (sección 5) y de la evaluación (sección 12) viven
+en `assets/js/course-config.js`.
 
 ## 1. Abrir el proyecto localmente
 
@@ -86,26 +114,67 @@ git push -u origin main
    `codigo-etica-landing/` a la raíz del repo, o publica desde esa subcarpeta
    si tu plan de GitHub Pages lo permite).
 
-## 4. Reemplazar las preguntas demo por preguntas finales
+## 4. Editar módulos, videos y preguntas (todo en `course-config.js`)
 
-En `index.html`, busca la sección `<section id="evaluacion">`. Cada pregunta
-está marcada así:
+Todo el contenido variable del curso vive en **`assets/js/course-config.js`**.
+No es necesario tocar `index.html` ni `app.js` para estos cambios.
 
-```html
-<span class="quiz-demo-tag">Pregunta demo — reemplazar por pregunta validada por Compliance</span>
+### Cambiar un video de un módulo
+Ubica el módulo dentro del arreglo `modulos` y reemplaza:
+```js
+videoUrl: "PEGAR_URL_VIDEO_1",
+```
+por la URL real (YouTube, Vimeo o un archivo `.mp4` directo). Mientras el
+valor empiece con `PEGAR_`, el sitio mostrará automáticamente un reproductor
+de "video disponible próximamente" en su lugar, sin romperse.
+
+### Editar título, descripción, puntos clave o duración de un módulo
+Edita directamente las propiedades `titulo`, `subtitulo`, `descripcion`,
+`duracionEstimada`, `puntosClave` (arreglo de strings) y `recursos`
+(arreglo de `{ titulo, url }`) de ese módulo. Las tarjetas y el reproductor
+se regeneran automáticamente; no hay HTML que editar.
+
+### Agregar, quitar o reordenar módulos
+- Agrega o quita objetos del arreglo `modulos`.
+- El orden visual lo determina el campo `orden` de cada módulo (no la
+  posición en el arreglo).
+- Actualiza `totalVideos` para que coincida con el número de módulos que
+  tengan video.
+
+### Reemplazar las preguntas demo por preguntas finales
+Cada pregunta en `evaluacion.preguntas` tiene esta forma:
+
+```js
+{
+  id: "q1",
+  moduloId: 2,
+  demo: true,
+  etiquetaDemo: "Pregunta demo — reemplazar por pregunta validada por Compliance",
+  pregunta: "Texto de la pregunta",
+  opciones: [
+    { valor: "a", texto: "Opción A" },
+    { valor: "b", texto: "Opción B" },
+    { valor: "c", texto: "Opción C" }
+  ],
+  correcta: "b"
+}
 ```
 
 Para cada pregunta:
+1. Sustituye `pregunta` y los textos de `opciones`.
+2. Ajusta `correcta` para que coincida con el `valor` de la opción correcta.
+3. Una vez validada por Compliance, cambia `demo: true` a `demo: false` (o
+   elimina `etiquetaDemo`) para que deje de mostrarse la etiqueta demo.
+4. Puedes agregar o quitar preguntas del arreglo libremente.
 
-1. Sustituye el texto de la pregunta (`<h4>`) y las opciones (`<label class="quiz-option">`).
-2. Actualiza el atributo `data-correct` en `.quiz-question` con la letra de la
-   opción correcta (`a`, `b` o `c`), que debe coincidir con el `value` del
-   `<input>` correspondiente.
-3. Una vez que Compliance valide las preguntas finales, elimina o actualiza
-   la etiqueta `quiz-demo-tag`.
-4. El umbral de aprobación (80%) se define en `script.js`, variable `passed`
-   dentro de la función del listener de `quizForm` — ajústalo si Compliance
-   define un porcentaje distinto.
+### Calificación mínima y máximo de intentos
+Se definen una sola vez, en la raíz de `COURSE_CONFIG`:
+```js
+calificacionMinima: 85,
+maximoIntentos: 5,
+```
+`app.js` los usa dinámicamente (mensajes, contador de intentos, umbral de
+aprobación); no están duplicados en ningún otro archivo.
 
 ## 5. Reemplazar imágenes y GIFs por assets corporativos reales
 
@@ -124,38 +193,57 @@ Recuerda: no incluyas imágenes con texto incrustado (el texto debe ir en
 HTML real, no "quemado" dentro de la imagen), y evita contenido de terceros
 sin licencia confirmada.
 
-## 6. Preparar integración futura (SharePoint / Power Automate / Power BI)
+## 6. Modo demo vs. modo production (`window.APP_MODE`)
 
-Este proyecto es una **demo funcional en el navegador**; no tiene backend.
-Los módulos diseñados para integrarse a futuro son:
+`assets/js/course-config.js` define:
 
-### Firma y constancia (sección 12, `#constancia`)
-- Actualmente genera la constancia en el navegador (HTML) y permite
-  descargarla como PDF con `html2pdf.js`, sin guardar nada en un servidor.
-- Para producción: sustituye el listener de `constanciaForm` en `script.js`
-  por una llamada `fetch()` a un flujo de **Power Automate** (HTTP trigger) o
-  a una API que escriba en **SharePoint** (lista o biblioteca de documentos),
-  enviando `nombre`, `correo`, `área`, `calificación`, `fecha` y la firma en
-  base64 (`signaturePad.toDataURL()`).
-- Considera agregar autenticación (Azure AD/Entra ID) antes de exponer el
-  formulario fuera de un entorno controlado.
+```js
+window.APP_MODE = "demo"; // "demo" | "production"
+```
 
-### Evaluación (sección 11, `#evaluacion`)
-- Sustituye la lógica local de `quizForm` por preguntas obtenidas desde una
-  lista de SharePoint o una API, y envía los resultados a la misma fuente de
-  datos que alimentará el dashboard de Power BI.
+**Modo `"demo"` (valor por defecto):**
+- No se llama a ninguna API. Todo se resuelve con datos locales simulados.
+- La evaluación se califica en el navegador, comparando contra `correcta` en
+  `course-config.js`.
+- La constancia se genera y descarga localmente con `html2pdf.js`.
+- Se puede recorrer toda la experiencia (bienvenida → módulos → evaluación →
+  constancia) sin backend ni conexión a Power Automate.
 
-### Métricas (sección 13, `#metricas`)
-- Los KPIs y gráficas (`Chart.js`) actualmente usan datos simulados
-  (`data-target`, arrays fijos en `script.js`). Para producción:
-  1. Expón un dataset (Power BI Embedded, API REST, o export JSON) con los
-     campos: participantes capacitados, promedio de calificación, % aprobados,
-     % pendientes, avance por área, preguntas con mayor error, documentos
-     firmados generados.
-  2. Reemplaza los arrays estáticos en `script.js` (función de inicialización
-     de `Chart.js`) por una llamada `fetch()` a ese endpoint.
-  3. Si usarás Power BI directamente, puedes incrustar un reporte con un
-     `<iframe>` de Power BI Embedded en lugar de los `<canvas>` de Chart.js.
+**Modo `"production"`:** `app.js` consume las 5 APIs de `api-config.js`:
+
+| API (`api-config.js`) | Cuándo se llama | Qué envía | Qué espera de vuelta |
+|---|---|---|---|
+| `iniciarCurso` | Al cargar la página, una sola vez | `cursoID`, `versionCurso` | `{ sessionId }` |
+| `obtenerEstado` | Justo después de `iniciarCurso` | `cursoID`, `sessionId` | `{ completedModules, quizAttemptsUsed }` |
+| `guardarProgreso` | Al hacer clic en "Marcar como visto" en un módulo | `cursoID`, `sessionId`, `moduloId`, `completado` | confirmación (no bloqueante) |
+| `validarExamen` | Al enviar el formulario de evaluación | `cursoID`, `sessionId`, `respuestas` | `{ calificacion }` (0-100) |
+| `generarConstancia` | Al enviar el formulario de firma/constancia | `cursoID`, `sessionId`, `nombre`, `correo`, `area`, `calificacion`, `fecha`, `firma` (base64) | idealmente `{ constanciaUrl }` con el PDF oficial |
+
+### Transición de demo a production (3 pasos, ningún otro archivo se toca)
+1. Pega las 5 URLs reales en `assets/js/api-config.js`.
+2. Pega las 6 URLs de video (y opcionalmente `posterUrl`) en
+   `assets/js/course-config.js`.
+3. Cambia `window.APP_MODE` de `"demo"` a `"production"` en
+   `assets/js/course-config.js`.
+
+### Validación de configuración y avisos
+- `app.js` considera "sin configurar" cualquier valor vacío o que empiece con
+  `PEGAR_` (función `isPlaceholderUrl`).
+- Si `APP_MODE` es `"production"` y falta configurar alguna URL, `app.js` no
+  intenta la llamada rota: registra un aviso técnico en la consola del
+  navegador y muestra un banner discreto y descartable en pantalla
+  ("Configuración pendiente: ..."), sin romper el resto de la experiencia
+  visual.
+- Al cargar la página, revisa la consola del navegador (F12): se imprime un
+  resumen con el modo activo y qué URLs de API/video siguen pendientes.
+
+### Sobre Power BI (sección de métricas demo)
+El panel de la sección `#metricas` sigue usando datos simulados con
+`Chart.js` (no forma parte de las 5 APIs anteriores, ya que son métricas
+agregadas de administración, no de un usuario cursando el curso). Para
+producción, la opción más simple es sustituir los `<canvas>` de esa sección
+por un `<iframe>` de Power BI Embedded, o exponer un endpoint adicional y
+adaptar `setupCharts()` en `app.js` para consumirlo.
 
 ## Librerías utilizadas (todas vía CDN, sin claves API)
 
@@ -176,6 +264,7 @@ Los módulos diseñados para integrarse a futuro son:
 - El contenido de ética, condiciones laborales, salud y seguridad, medio
   ambiente y canal de denuncia refleja fielmente el `Inter-Con_Ethics_Blueprint.pptx`
   proporcionado; cualquier actualización al Código de Ética oficial debe
-  reflejarse manualmente en `index.html`.
+  reflejarse en `index.html` (secciones de texto) y/o en
+  `assets/js/course-config.js` (módulos y evaluación), según corresponda.
 - Todo el proyecto es editable: no hay build step, empaquetado ni
   dependencias de Node para ejecutarlo.
