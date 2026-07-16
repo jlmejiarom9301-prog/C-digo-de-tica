@@ -149,16 +149,23 @@
     lastQuizScorePct: readLocal('lastQuizScorePct', null)
   };
 
+  var registro = readLocal('registro', null);
+
   function initCourseSession() {
     if (MODE !== 'production') return Promise.resolve();
-    if (state.sessionId) return Promise.resolve();
 
-    return callApi('iniciarCurso', 'Iniciar curso', { cursoID: COURSE.cursoID, versionCurso: COURSE.versionCurso })
-      .then(function (result) {
-        if (result && result.sessionId) {
-          state.sessionId = result.sessionId;
-          writeLocal('session', state.sessionId);
-        }
+    var startPromise = state.sessionId
+      ? Promise.resolve()
+      : callApi('iniciarCurso', 'Iniciar curso', { cursoID: COURSE.cursoID, versionCurso: COURSE.versionCurso, registro: registro })
+          .then(function (result) {
+            if (result && result.sessionId) {
+              state.sessionId = result.sessionId;
+              writeLocal('session', state.sessionId);
+            }
+          });
+
+    return startPromise
+      .then(function () {
         return callApi('obtenerEstado', 'Obtener estado', { cursoID: COURSE.cursoID, sessionId: state.sessionId });
       })
       .then(function (estado) {
@@ -173,6 +180,150 @@
           }
         }
       });
+  }
+
+  /* =========================================================
+     1.6 GATE DE ACCESO (bienvenida + registro)
+     ========================================================= */
+
+  function renderGate() {
+    var b = COURSE.bienvenida || {};
+    var tituloEl = document.getElementById('gateTitulo');
+    var mensajeEl = document.getElementById('gateMensaje');
+    var objetivoEl = document.getElementById('gateObjetivo');
+    var duracionEl = document.getElementById('gateDuracion');
+    var reqList = document.getElementById('gateRequisitosList');
+    var tipoSelect = document.getElementById('regTipoParticipante');
+
+    if (tituloEl) tituloEl.textContent = b.titulo || COURSE.nombreCurso || 'Curso';
+    if (mensajeEl) mensajeEl.textContent = b.mensaje || '';
+    if (objetivoEl) objetivoEl.textContent = b.objetivo || '';
+    if (duracionEl) duracionEl.textContent = b.duracionEstimada || '';
+
+    if (reqList) {
+      var totalVideos = COURSE.totalVideos || (COURSE.modulos || []).length;
+      var items = [
+        'Visualizar el 100% de los videos del curso (' + totalVideos + ' modulos).',
+        'Obtener una calificacion minima de ' + COURSE.calificacionMinima + '.',
+        'Maximo ' + COURSE.maximoIntentos + ' intentos para la evaluacion.'
+      ];
+      reqList.innerHTML = items.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+    }
+
+    if (tipoSelect) {
+      var tipos = (COURSE.registro && COURSE.registro.tiposParticipante) || [];
+      tipoSelect.innerHTML = '<option value="">Selecciona una opcion</option>' +
+        tipos.map(function (t) { return '<option value="' + t + '">' + t + '</option>'; }).join('');
+    }
+  }
+
+  function prefillConstancia(reg) {
+    var nombreEl = document.getElementById('ccNombre');
+    var correoEl = document.getElementById('ccCorreo');
+    if (nombreEl && reg.nombre) nombreEl.value = reg.nombre;
+    if (correoEl && reg.correo) correoEl.value = reg.correo;
+  }
+
+  function unlockSite() {
+    document.body.classList.remove('gate-locked');
+  }
+
+  function setupGate(onUnlock) {
+    var gateBienvenida = document.getElementById('gateBienvenida');
+    var gateRegistro = document.getElementById('gateRegistro');
+    var btnComenzar = document.getElementById('btnComenzarCurso');
+    var btnVolver = document.getElementById('btnVolverBienvenida');
+    var registroForm = document.getElementById('registroForm');
+    var empresaInput = document.getElementById('regEmpresa');
+    var numEmpleadoInput = document.getElementById('regNumEmpleado');
+    var errorEl = document.getElementById('registroError');
+
+    if (registro) {
+      unlockSite();
+      if (onUnlock) onUnlock();
+      return;
+    }
+
+    if (btnComenzar) {
+      btnComenzar.addEventListener('click', function () {
+        if (gateBienvenida) gateBienvenida.classList.add('hidden');
+        if (gateRegistro) gateRegistro.classList.remove('hidden');
+      });
+    }
+    if (btnVolver) {
+      btnVolver.addEventListener('click', function () {
+        if (gateRegistro) gateRegistro.classList.add('hidden');
+        if (gateBienvenida) gateBienvenida.classList.remove('hidden');
+      });
+    }
+
+    function clearErrors() {
+      if (errorEl) { errorEl.style.display = 'none'; errorEl.textContent = ''; }
+      if (registroForm) {
+        registroForm.querySelectorAll('.field-error').forEach(function (el) { el.classList.remove('field-error'); });
+      }
+    }
+
+    function showError(msg) {
+      if (errorEl) { errorEl.textContent = msg; errorEl.style.display = 'block'; }
+    }
+
+    if (registroForm) {
+      registroForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearErrors();
+
+        var nombre = document.getElementById('regNombre').value.trim();
+        var tipoParticipante = document.getElementById('regTipoParticipante').value;
+        var numEmpleado = numEmpleadoInput.value.trim();
+        var empresa = empresaInput.value.trim();
+        var correo = document.getElementById('regCorreo').value.trim();
+        var telefono = document.getElementById('regTelefono').value.trim();
+        var consentimiento = document.getElementById('regConsentimiento').checked;
+
+        var missing = [];
+        if (!nombre) missing.push('regNombre');
+        if (!tipoParticipante) missing.push('regTipoParticipante');
+        if (!correo) missing.push('regCorreo');
+        if (!consentimiento) missing.push('regConsentimiento');
+        // Empresa es obligatoria SOLO cuando no exista numero de empleado
+        var empresaRequerida = !numEmpleado && !empresa;
+        if (empresaRequerida) missing.push('regEmpresa');
+
+        if (missing.length) {
+          missing.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.classList.add('field-error');
+          });
+          showError(empresaRequerida
+            ? 'Por favor completa los campos obligatorios. La empresa es obligatoria cuando no se cuenta con numero de empleado.'
+            : 'Por favor completa los campos obligatorios.');
+          return;
+        }
+
+        var correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+        if (!correoValido) {
+          document.getElementById('regCorreo').classList.add('field-error');
+          showError('Ingresa un correo electronico valido.');
+          return;
+        }
+
+        registro = {
+          nombre: nombre,
+          tipoParticipante: tipoParticipante,
+          numEmpleado: numEmpleado,
+          empresa: empresa,
+          correo: correo,
+          telefono: telefono,
+          consentimiento: consentimiento,
+          fechaRegistro: new Date().toISOString()
+        };
+        writeLocal('registro', registro);
+        prefillConstancia(registro);
+        unlockSite();
+        if (onUnlock) onUnlock();
+      });
+    }
   }
 
   function markModuleCompleted(moduleId) {
@@ -391,7 +542,8 @@
       var rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * ratio;
       canvas.height = rect.height * ratio;
-      canvas.getContext('2d').scale(ratio, ratio);
+      var ctx = canvas.getContext && canvas.getContext('2d');
+      if (ctx) ctx.scale(ratio, ratio);
       if (signaturePad) signaturePad.clear();
     }
 
@@ -606,15 +758,7 @@
      7. INICIALIZACION
      ========================================================= */
 
-  document.addEventListener('DOMContentLoaded', function () {
-    if (window.AOS) AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
-
-    setupNav();
-    setupAccordions();
-    setupKpiCounters();
-    setupCharts();
-    setupConstancia();
-
+  function startCourseFlow() {
     initCourseSession().then(function () {
       var incomplete = sortedModules().filter(function (m) { return !state.completedModules[m.id]; });
       var mods = sortedModules();
@@ -626,6 +770,31 @@
       var quizForm = document.getElementById('quizForm');
       if (quizForm) quizForm.addEventListener('submit', handleQuizSubmit);
     });
+  }
+
+  function safeRun(fn, label) {
+    try {
+      fn();
+    } catch (e) {
+      console.error('[init] Error en "' + label + '":', e);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.AOS) AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
+
+    // El gate (bienvenida/registro) se inicializa primero y de forma aislada:
+    // un error en cualquier otro modulo (nav, graficas, firma, etc.) nunca debe
+    // impedir que el usuario pueda registrarse y desbloquear el sitio.
+    safeRun(renderGate, 'renderGate');
+    if (registro) safeRun(function () { prefillConstancia(registro); }, 'prefillConstancia');
+    safeRun(function () { setupGate(startCourseFlow); }, 'setupGate');
+
+    safeRun(setupNav, 'setupNav');
+    safeRun(setupAccordions, 'setupAccordions');
+    safeRun(setupKpiCounters, 'setupKpiCounters');
+    safeRun(setupCharts, 'setupCharts');
+    safeRun(setupConstancia, 'setupConstancia');
   });
 
 })();

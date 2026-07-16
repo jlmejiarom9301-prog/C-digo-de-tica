@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Código de Ética para Asociados de Negocio | INTER-CON Servicios de Seguridad Privada</title>
+<title>Código de Ética 2.0 | INTER-CON Servicios de Seguridad Privada</title>
 <meta name="description" content="Capacitación corporativa interactiva del Código de Ética para Asociados de Negocio de INTER-CON Servicios de Seguridad Privada, S.A. de C.V.">
 
 <!-- Google Fonts -->
@@ -20,7 +20,7 @@
 <!-- Local styles -->
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="gate-locked">
 
 <!-- ===================== PROGRESS BAR ===================== -->
 <div class="progress-track" aria-hidden="true">
@@ -56,7 +56,6 @@
     <li><a href="#objetivo" class="nav-link" data-section="objetivo"><i class="fa-solid fa-bullseye"></i><span>Objetivo</span></a></li>
     <li><a href="#importancia" class="nav-link" data-section="importancia"><i class="fa-solid fa-star"></i><span>Importancia</span></a></li>
     <li><a href="#alcance" class="nav-link" data-section="alcance"><i class="fa-solid fa-diagram-project"></i><span>Alcance</span></a></li>
-    <li><a href="#modulos" class="nav-link" data-section="modulos"><i class="fa-solid fa-clapperboard"></i><span>Módulos del curso</span></a></li>
     <li><a href="#laborales" class="nav-link" data-section="laborales"><i class="fa-solid fa-people-group"></i><span>Cond. Laborales</span></a></li>
     <li><a href="#salud" class="nav-link" data-section="salud"><i class="fa-solid fa-shield-heart"></i><span>Salud y Seguridad</span></a></li>
     <li><a href="#etica" class="nav-link" data-section="etica"><i class="fa-solid fa-scale-balanced"></i><span>Ética Empresarial</span></a></li>
@@ -80,7 +79,7 @@
 <!-- ===================== MAIN CONTENT ===================== -->
 <main class="main-content">
 
-  <!-- 1. BIENVENIDA / HERO -->
+  <!-- 1. BIENVENIDA / GATE DE ACCESO -->
   <section id="inicio" class="section hero">
     <div class="hero-circles" aria-hidden="true">
       <span class="circle c1"></span>
@@ -88,27 +87,95 @@
       <span class="circle c3"></span>
     </div>
     <div class="hero-inner">
-      <div class="hero-logo" data-aos="fade-down">
-        <div class="brand-mark brand-mark-lg">IC</div>
-        <div class="brand-word">
-          <span class="brand-word-main brand-word-lg">INTER-CON</span>
-          <span class="brand-word-sub">Inter-Con Servicios de Seguridad Privada, S.A. de C.V.</span>
+
+      <!-- Panel 1: Bienvenida (contenido generado desde COURSE_CONFIG.bienvenida) -->
+      <div class="gate-panel" id="gateBienvenida">
+        <div class="hero-logo" data-aos="fade-down">
+          <div class="brand-mark brand-mark-lg">IC</div>
+          <div class="brand-word">
+            <span class="brand-word-main brand-word-lg">INTER-CON</span>
+            <span class="brand-word-sub">Inter-Con Servicios de Seguridad Privada, S.A. de C.V.</span>
+          </div>
+        </div>
+        <span class="version-badge" data-aos="fade-up">v2.0 · Módulos en video + evaluación dinámica</span>
+        <p class="eyebrow" data-aos="fade-up" data-aos-delay="100">Capacitación Corporativa</p>
+        <h1 id="gateTitulo" data-aos="fade-up" data-aos-delay="150">Curso Código de Ética</h1>
+        <p class="hero-subtitle" id="gateMensaje" data-aos="fade-up" data-aos-delay="200">
+          <!-- mensaje de bienvenida generado dinámicamente por app.js -->
+        </p>
+
+        <div class="gate-info-grid" data-aos="fade-up" data-aos-delay="250">
+          <div class="gate-info-block">
+            <h4><i class="fa-solid fa-bullseye"></i> Objetivo del curso</h4>
+            <p id="gateObjetivo"><!-- generado dinámicamente --></p>
+          </div>
+          <div class="gate-info-block">
+            <h4><i class="fa-solid fa-clock"></i> Duración estimada</h4>
+            <p id="gateDuracion"><!-- generado dinámicamente --></p>
+          </div>
+        </div>
+
+        <div class="gate-requisitos" data-aos="fade-up" data-aos-delay="300">
+          <h4><i class="fa-solid fa-list-check"></i> Requisitos para acreditar el curso</h4>
+          <ul id="gateRequisitosList">
+            <!-- requisitos generados dinámicamente desde COURSE_CONFIG (totalVideos, calificacionMinima, maximoIntentos) -->
+          </ul>
+        </div>
+
+        <div class="hero-actions" data-aos="fade-up" data-aos-delay="350">
+          <button type="button" id="btnComenzarCurso" class="btn btn-primary">Comenzar curso <i class="fa-solid fa-arrow-right"></i></button>
         </div>
       </div>
-      <p class="eyebrow" data-aos="fade-up" data-aos-delay="100">Capacitación Corporativa</p>
-      <h1 data-aos="fade-up" data-aos-delay="150">Código de Ética para<br>Asociados de Negocio</h1>
-      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
-        Programa de cumplimiento y conducta empresarial de INTER-CON Servicios de Seguridad Privada, S.A. de C.V.
-      </p>
-      <div class="hero-actions" data-aos="fade-up" data-aos-delay="250">
-        <a href="#objetivo" class="btn btn-primary">Comenzar capacitación <i class="fa-solid fa-arrow-right"></i></a>
-        <a href="#alcance" class="btn btn-ghost-light">Ver contenido</a>
+
+      <!-- Panel 2: Registro (oculto hasta pulsar "Comenzar curso") -->
+      <div class="gate-panel gate-registro hidden" id="gateRegistro">
+        <h2>Registro de participante</h2>
+        <p class="section-lead">Completa tus datos para comenzar la capacitación. Esta información se utiliza para dar seguimiento a tu avance y generar tu constancia.</p>
+
+        <form id="registroForm" class="registro-form" novalidate>
+          <label>Nombre completo *
+            <input type="text" id="regNombre" name="nombre" placeholder="Ej. Juan Pérez López" required>
+          </label>
+
+          <div class="registro-row">
+            <label>Tipo de participante *
+              <select id="regTipoParticipante" name="tipoParticipante" required>
+                <option value="">Selecciona una opción</option>
+                <!-- opciones generadas dinámicamente desde COURSE_CONFIG.registro.tiposParticipante -->
+              </select>
+            </label>
+            <label>Número de empleado <span class="hint">(opcional)</span>
+              <input type="text" id="regNumEmpleado" name="numEmpleado" placeholder="Ej. 10234" autocomplete="off">
+            </label>
+          </div>
+
+          <div class="registro-row">
+            <label id="regEmpresaLabel">Empresa <span class="hint">(obligatoria si no tienes número de empleado)</span>
+              <input type="text" id="regEmpresa" name="empresa" placeholder="Nombre de tu empresa">
+            </label>
+            <label>Correo electrónico *
+              <input type="email" id="regCorreo" name="correo" placeholder="nombre@empresa.com" required>
+            </label>
+          </div>
+
+          <label>Teléfono <span class="hint">(opcional)</span>
+            <input type="tel" id="regTelefono" name="telefono" placeholder="Ej. 55 1234 5678" autocomplete="off">
+          </label>
+
+          <label class="registro-checkbox">
+            <input type="checkbox" id="regConsentimiento" name="consentimiento" required>
+            <span>Acepto el tratamiento de mis datos personales para fines de registro, seguimiento y emisión de constancia de esta capacitación, conforme al aviso de privacidad de INTER-CON. *</span>
+          </label>
+
+          <p class="quiz-attempts-info" id="registroError" style="display:none; color:#e2a33c;"></p>
+
+          <div class="registro-actions">
+            <button type="button" id="btnVolverBienvenida" class="btn btn-ghost-light">Regresar</button>
+            <button type="submit" class="btn btn-primary">Comenzar curso <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </form>
       </div>
-      <div class="hero-meta" data-aos="fade-up" data-aos-delay="300">
-        <div class="hero-meta-item"><i class="fa-solid fa-clock"></i> Duración estimada: 20-25 min</div>
-        <div class="hero-meta-item"><i class="fa-solid fa-layer-group"></i> 14 módulos</div>
-        <div class="hero-meta-item"><i class="fa-solid fa-clipboard-check"></i> Incluye evaluación y constancia</div>
-      </div>
+
     </div>
     <a href="#objetivo" class="scroll-cue" aria-label="Desplazarse hacia abajo"><i class="fa-solid fa-chevron-down"></i></a>
   </section>
@@ -215,23 +282,6 @@
         <a href="#etica" class="mini-nav-card"><span>04</span>Ética en la empresa</a>
         <a href="#ambiente" class="mini-nav-card"><span>05</span>Medio ambiente</a>
         <a href="#denuncia" class="mini-nav-card"><span>06</span>Canal de denuncia</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- MÓDULOS DEL CURSO (100% generado desde COURSE_CONFIG, ver assets/js/course-config.js) -->
-  <section id="modulos" class="section">
-    <div class="section-inner">
-      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-clapperboard"></i> Módulos del curso</p>
-      <h2 data-aos="fade-up">Recorre la capacitación en video, módulo por módulo</h2>
-      <p class="section-lead" data-aos="fade-up" data-aos-delay="50">Selecciona un módulo para ver su video, sus puntos clave y el contenido de referencia completo. Tu avance se guarda automáticamente.</p>
-
-      <div class="module-grid" id="modulosGrid" data-aos="fade-up" data-aos-delay="100">
-        <!-- Tarjetas de módulo generadas dinámicamente por app.js -->
-      </div>
-
-      <div class="module-player" id="moduloPlayer" data-aos="fade-up" data-aos-delay="150">
-        <!-- Reproductor + contenido del módulo activo, generado dinámicamente por app.js -->
       </div>
     </div>
   </section>
@@ -367,12 +417,23 @@
     </div>
   </section>
 
-  <!-- 7. ÉTICA EMPRESARIAL -->
+  <!-- 7. ÉTICA EMPRESARIAL (incluye módulos del curso en video) -->
   <section id="etica" class="section alt">
     <div class="section-inner">
       <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-scale-balanced"></i> 06 · Ética Empresarial</p>
       <h2 data-aos="fade-up">Diez principios rectores para operar con absoluta integridad</h2>
+      <p class="section-lead" data-aos="fade-up" data-aos-delay="50">Recorre la capacitación en video, módulo por módulo, y revisa los diez principios que sustentan nuestra ética empresarial. Tu avance se guarda automáticamente.</p>
 
+      <!-- MÓDULOS DEL CURSO (100% generado desde COURSE_CONFIG, ver assets/js/course-config.js) -->
+      <div class="module-grid" id="modulosGrid" data-aos="fade-up" data-aos-delay="100">
+        <!-- Tarjetas de módulo generadas dinámicamente por app.js -->
+      </div>
+
+      <div class="module-player" id="moduloPlayer" data-aos="fade-up" data-aos-delay="150">
+        <!-- Reproductor + contenido del módulo activo, generado dinámicamente por app.js -->
+      </div>
+
+      <h3 class="h3-underline" data-aos="fade-up" style="margin-top:50px;">Los diez principios</h3>
       <div class="accordion numbered" data-aos="fade-up" data-aos-delay="100">
         <div class="accordion-item">
           <button class="accordion-trigger"><span class="num">1</span><i class="fa-solid fa-gavel"></i> Fidelidad a las leyes <i class="fa-solid fa-chevron-down chev"></i></button>
@@ -493,12 +554,12 @@
     </div>
   </section>
 
-  <!-- 11. EVALUACIÓN DEMO -->
+  <!-- 11. EVALUACIÓN -->
   <section id="evaluacion" class="section">
     <div class="section-inner">
-      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-clipboard-question"></i> 10 · Evaluación demo</p>
+      <p class="section-tag" data-aos="fade-up"><i class="fa-solid fa-clipboard-question"></i> 10 · Evaluación final</p>
       <h2 data-aos="fade-up">Comprueba tu comprensión del Código de Ética</h2>
-      <p class="section-lead" data-aos="fade-up" data-aos-delay="50">Responde las siguientes preguntas de opción múltiple. Este cuestionario es una <strong>demostración funcional</strong>; las preguntas finales serán validadas por el equipo de Compliance.</p>
+      <p class="section-lead" data-aos="fade-up" data-aos-delay="50">Responde las siguientes preguntas de opción múltiple. Debes obtener la calificación mínima requerida para acreditar el curso.</p>
 
       <form id="quizForm" class="quiz" data-aos="fade-up" data-aos-delay="100">
         <div id="quizContainer">

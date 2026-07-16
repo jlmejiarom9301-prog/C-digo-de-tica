@@ -1,4 +1,8 @@
-# Código de Ética para Asociados de Negocio — INTER-CON Servicios de Seguridad Privada
+# Código de Ética 2.0 — INTER-CON Servicios de Seguridad Privada
+
+**Versión 2.0**: arquitectura basada en configuración (`api-config.js` +
+`course-config.js`), módulos en video generados dinámicamente y evaluación
+dinámica con control de intentos. Ver detalle completo más abajo.
 
 Landing page interactiva tipo e-learning para la capacitación corporativa del
 **Código de Ética para Asociados de Negocio** de INTER-CON Servicios de Seguridad
@@ -9,8 +13,8 @@ servidor ni backend — y está lista para publicarse en GitHub Pages.
 ## Estructura del proyecto
 
 ```text
-codigo-etica-landing/
-├── index.html            # Estructura y secciones (contenido de módulos/quiz es dinámico)
+codigo-etica-2.0/
+├── index.html            # Estructura y secciones (gate, módulos y quiz son dinámicos)
 ├── styles.css             # Estilos, paleta corporativa y responsive
 ├── app.js                  # Motor de la app: NO contiene URLs, textos ni preguntas
 ├── README.md
@@ -20,7 +24,7 @@ codigo-etica-landing/
     ├── animations/         # Carpeta reservada para GIFs/Lottie ligeros
     └── js/
         ├── api-config.js    # ÚNICO lugar con URLs de API / Power Automate
-        └── course-config.js # ÚNICO lugar con módulos, videos, textos y preguntas
+        └── course-config.js # ÚNICO lugar con bienvenida, registro, módulos, videos y preguntas
 ```
 
 ## Arquitectura de configuración (léelo antes de editar nada)
@@ -35,45 +39,86 @@ muestra), para que dar mantenimiento sea seguro y no requiera tocar código:
   clave, recursos) y las preguntas de la evaluación. También define
   `window.APP_MODE` ("demo" o "production").
 - **`app.js`** — solo lógica. Lee ambos archivos de configuración y genera
-  dinámicamente las tarjetas de módulo, el reproductor, la evaluación y la
-  constancia. **Nunca** contiene URLs, títulos ni preguntas escritos a mano.
-- **`index.html`** — contiene contenedores vacíos (`#modulosGrid`,
-  `#moduloPlayer`, `#quizContainer`) que `app.js` llena en tiempo de
-  ejecución. No hay 6 módulos ni preguntas repetidas en el HTML.
+  dinámicamente la pantalla de bienvenida/registro, las tarjetas de módulo,
+  el reproductor, la evaluación y la constancia. **Nunca** contiene URLs,
+  títulos ni preguntas escritos a mano.
+- **`index.html`** — contiene contenedores vacíos (`#gateTitulo`,
+  `#gateMensaje`, `#modulosGrid`, `#moduloPlayer`, `#quizContainer`, etc.)
+  que `app.js` llena en tiempo de ejecución. No hay textos de bienvenida,
+  módulos ni preguntas repetidos en el HTML.
 
 Ambos archivos de `assets/js/` deben cargarse **antes** que `app.js` (así
 está ya configurado en `index.html`).
 
 ## Contenido incluido
 
-1. Bienvenida (hero)
+1. **Bienvenida y registro (gate)** — pantalla de acceso que pide los datos
+   del participante antes de mostrar el resto del sitio (ver detalle abajo).
 2. Objetivo de la capacitación
 3. Importancia del Código de Ética
 4. Alcance
-5. **Módulos del curso** (video + puntos clave, 100% generado desde `course-config.js`)
-6. Condiciones Laborales
-7. Salud y Seguridad
-8. Ética Empresarial (10 principios rectores)
-9. Medio Ambiente
-10. Canal de Denuncia
-11. Compromiso Final
-12. Evaluación (quiz dinámico con cálculo automático de resultado)
-13. Firma y constancia demo (firma en pantalla + PDF / API)
-14. Métricas demo (dashboard mockup)
-15. Cierre
+5. Condiciones Laborales
+6. Salud y Seguridad
+7. **Ética Empresarial** (10 principios rectores + **módulos del curso en
+   video**, 100% generado desde `course-config.js`)
+8. Medio Ambiente
+9. Canal de Denuncia
+10. Compromiso Final
+11. Evaluación (quiz dinámico con cálculo automático de resultado)
+12. Firma y constancia demo (firma en pantalla + PDF / API)
+13. Métricas demo (dashboard mockup)
+14. Cierre
 
 El contenido fue tomado y reorganizado visualmente a partir de
 `Inter-Con_Ethics_Blueprint.pptx`, respetando su sentido original. No se
 agregó legislación ni obligaciones no mencionadas en la presentación. Los
-textos de las secciones 6 a 10 viven en `index.html`; los textos, videos y
-preguntas de los 6 módulos (sección 5) y de la evaluación (sección 12) viven
-en `assets/js/course-config.js`.
+textos de las secciones 5 a 9 viven en `index.html`; los textos de
+bienvenida/registro (sección 1), los videos y puntos clave de los 6 módulos
+(sección 7) y las preguntas de la evaluación (sección 11) viven en
+`assets/js/course-config.js`.
+
+## La pantalla de bienvenida y registro (gate)
+
+Antes de mostrar cualquier otra sección, el sitio presenta una pantalla de
+**bienvenida** (logo, título, mensaje, objetivo, duración estimada y
+requisitos para acreditar el curso) con un botón **"Comenzar curso"**. Al
+pulsarlo aparece un **formulario de registro** con estos campos:
+
+| Campo | Obligatorio |
+|---|---|
+| Nombre completo | Sí |
+| Tipo de participante (Empleado, Proveedor, Cliente, Contratista, Otro) | Sí |
+| Número de empleado | No |
+| Empresa | **Solo si no se captura número de empleado** |
+| Correo electrónico | Sí |
+| Teléfono | No |
+| Aceptación de tratamiento de datos / consentimiento | Sí |
+
+Mientras el registro no se complete, el resto del sitio permanece oculto
+(`body.gate-locked` en `styles.css`). Al enviarse un registro válido:
+
+- Se guarda localmente (`localStorage`, con la misma lógica de `readLocal` /
+  `writeLocal` que usa el resto del progreso del curso).
+- Se precarga el nombre y correo en el formulario de constancia (sección 12).
+- Se desbloquea el resto del sitio y se inicializan módulos y evaluación.
+- En modo `"production"`, el objeto de registro se envía como parte del
+  payload de `iniciarCurso` (ver tabla de APIs más abajo).
+
+Si la persona ya se registró antes (mismo navegador), el gate no vuelve a
+aparecer en visitas posteriores.
+
+**Para editar los textos de esta pantalla**, edita `COURSE_CONFIG.bienvenida`
+(`titulo`, `mensaje`, `objetivo`, `duracionEstimada`) y
+`COURSE_CONFIG.registro.tiposParticipante` en `assets/js/course-config.js`.
+Los requisitos ("visualizar el 100% de los videos", "calificación mínima",
+"máximo de intentos") se generan solos a partir de `totalVideos`,
+`calificacionMinima` y `maximoIntentos` — no hay que editarlos por separado.
 
 ## 1. Abrir el proyecto localmente
 
 No necesitas instalar nada. Simplemente:
 
-1. Descarga o clona la carpeta `codigo-etica-landing/`.
+1. Descarga o clona la carpeta `codigo-etica-2.0/`.
 2. Haz doble clic en `index.html` para abrirlo en tu navegador.
 
 Si tu navegador bloquea algún recurso al abrir el archivo directamente
@@ -81,7 +126,7 @@ Si tu navegador bloquea algún recurso al abrir el archivo directamente
 
 ```bash
 # Con Python 3 instalado
-cd codigo-etica-landing
+cd codigo-etica-2.0
 python -m http.server 8000
 # Abre http://localhost:8000 en tu navegador
 ```
@@ -94,7 +139,7 @@ npx serve .
 ## 2. Subir el proyecto a GitHub
 
 ```bash
-cd codigo-etica-landing
+cd codigo-etica-2.0
 git init
 git add .
 git commit -m "Landing e-learning: Código de Ética INTER-CON"
@@ -111,7 +156,7 @@ git push -u origin main
    `https://TU_USUARIO.github.io/TU_REPOSITORIO/`
 4. Espera 1-2 minutos y abre la URL. Si el sitio no está en la raíz del
    repositorio, ajusta la ruta en consecuencia (mueve el contenido de
-   `codigo-etica-landing/` a la raíz del repo, o publica desde esa subcarpeta
+   `codigo-etica-2.0/` a la raíz del repo, o publica desde esa subcarpeta
    si tu plan de GitHub Pages lo permite).
 
 ## 4. Editar módulos, videos y preguntas (todo en `course-config.js`)
@@ -141,15 +186,14 @@ se regeneran automáticamente; no hay HTML que editar.
 - Actualiza `totalVideos` para que coincida con el número de módulos que
   tengan video.
 
-### Reemplazar las preguntas demo por preguntas finales
-Cada pregunta en `evaluacion.preguntas` tiene esta forma:
+### Editar o reemplazar las preguntas de la evaluación
+Esta versión (2.0) ya incluye las **10 preguntas finales** de evaluación,
+validadas por el negocio, en `evaluacion.preguntas`. Cada pregunta tiene
+esta forma:
 
 ```js
 {
   id: "q1",
-  moduloId: 2,
-  demo: true,
-  etiquetaDemo: "Pregunta demo — reemplazar por pregunta validada por Compliance",
   pregunta: "Texto de la pregunta",
   opciones: [
     { valor: "a", texto: "Opción A" },
@@ -160,12 +204,16 @@ Cada pregunta en `evaluacion.preguntas` tiene esta forma:
 }
 ```
 
-Para cada pregunta:
+Para editar una pregunta:
 1. Sustituye `pregunta` y los textos de `opciones`.
 2. Ajusta `correcta` para que coincida con el `valor` de la opción correcta.
-3. Una vez validada por Compliance, cambia `demo: true` a `demo: false` (o
-   elimina `etiquetaDemo`) para que deje de mostrarse la etiqueta demo.
-4. Puedes agregar o quitar preguntas del arreglo libremente.
+3. Puedes agregar o quitar preguntas del arreglo libremente; `app.js` las
+   genera dinámicamente sin importar cuántas sean.
+
+Si en el futuro Compliance necesita marcar alguna pregunta como pendiente de
+validación, `app.js` sigue soportando de forma opcional los campos
+`demo: true` y `etiquetaDemo: "..."` en cualquier pregunta — al agregarlos,
+esa pregunta mostrará una etiqueta visible de "pregunta demo" en pantalla.
 
 ### Calificación mínima y máximo de intentos
 Se definen una sola vez, en la raíz de `COURSE_CONFIG`:
@@ -213,58 +261,7 @@ window.APP_MODE = "demo"; // "demo" | "production"
 
 | API (`api-config.js`) | Cuándo se llama | Qué envía | Qué espera de vuelta |
 |---|---|---|---|
-| `iniciarCurso` | Al cargar la página, una sola vez | `cursoID`, `versionCurso` | `{ sessionId }` |
+| `iniciarCurso` | Justo después de enviar el registro (o al cargar, si ya había un registro previo) | `cursoID`, `versionCurso`, `registro` (nombre, tipoParticipante, numEmpleado, empresa, correo, teléfono, consentimiento) | `{ sessionId }` |
 | `obtenerEstado` | Justo después de `iniciarCurso` | `cursoID`, `sessionId` | `{ completedModules, quizAttemptsUsed }` |
 | `guardarProgreso` | Al hacer clic en "Marcar como visto" en un módulo | `cursoID`, `sessionId`, `moduloId`, `completado` | confirmación (no bloqueante) |
-| `validarExamen` | Al enviar el formulario de evaluación | `cursoID`, `sessionId`, `respuestas` | `{ calificacion }` (0-100) |
-| `generarConstancia` | Al enviar el formulario de firma/constancia | `cursoID`, `sessionId`, `nombre`, `correo`, `area`, `calificacion`, `fecha`, `firma` (base64) | idealmente `{ constanciaUrl }` con el PDF oficial |
-
-### Transición de demo a production (3 pasos, ningún otro archivo se toca)
-1. Pega las 5 URLs reales en `assets/js/api-config.js`.
-2. Pega las 6 URLs de video (y opcionalmente `posterUrl`) en
-   `assets/js/course-config.js`.
-3. Cambia `window.APP_MODE` de `"demo"` a `"production"` en
-   `assets/js/course-config.js`.
-
-### Validación de configuración y avisos
-- `app.js` considera "sin configurar" cualquier valor vacío o que empiece con
-  `PEGAR_` (función `isPlaceholderUrl`).
-- Si `APP_MODE` es `"production"` y falta configurar alguna URL, `app.js` no
-  intenta la llamada rota: registra un aviso técnico en la consola del
-  navegador y muestra un banner discreto y descartable en pantalla
-  ("Configuración pendiente: ..."), sin romper el resto de la experiencia
-  visual.
-- Al cargar la página, revisa la consola del navegador (F12): se imprime un
-  resumen con el modo activo y qué URLs de API/video siguen pendientes.
-
-### Sobre Power BI (sección de métricas demo)
-El panel de la sección `#metricas` sigue usando datos simulados con
-`Chart.js` (no forma parte de las 5 APIs anteriores, ya que son métricas
-agregadas de administración, no de un usuario cursando el curso). Para
-producción, la opción más simple es sustituir los `<canvas>` de esa sección
-por un `<iframe>` de Power BI Embedded, o exponer un endpoint adicional y
-adaptar `setupCharts()` en `app.js` para consumirlo.
-
-## Librerías utilizadas (todas vía CDN, sin claves API)
-
-| Librería | Uso |
-|---|---|
-| Font Awesome 6 | Iconografía |
-| AOS (Animate on Scroll) | Animaciones al hacer scroll |
-| Chart.js | Gráficas del dashboard de métricas demo |
-| Signature Pad | Firma en pantalla |
-| html2pdf.js | Generación de la constancia en PDF |
-| Google Fonts (Poppins / Inter) | Tipografía corporativa |
-
-## Notas importantes
-
-- Este micrositio es una **demostración**. Las secciones de evaluación,
-  firma/constancia y métricas están claramente etiquetadas como demo y no
-  tienen validez oficial hasta integrarse con los sistemas corporativos.
-- El contenido de ética, condiciones laborales, salud y seguridad, medio
-  ambiente y canal de denuncia refleja fielmente el `Inter-Con_Ethics_Blueprint.pptx`
-  proporcionado; cualquier actualización al Código de Ética oficial debe
-  reflejarse en `index.html` (secciones de texto) y/o en
-  `assets/js/course-config.js` (módulos y evaluación), según corresponda.
-- Todo el proyecto es editable: no hay build step, empaquetado ni
-  dependencias de Node para ejecutarlo.
+| `validarExamen` | Al enviar el formulario de evaluación | `cursoID`, 

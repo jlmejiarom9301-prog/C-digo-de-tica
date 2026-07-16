@@ -1,8 +1,9 @@
 /* =========================================================
    COURSE-CONFIG.JS
    Toda la configuración editable del curso vive aquí: nombre,
-   calificación mínima, número de intentos, módulos (con sus
-   videos, textos y puntos clave) y las preguntas de evaluación.
+   calificación mínima, número de intentos, contenido de la
+   pantalla de bienvenida/registro, módulos (con sus videos,
+   textos y puntos clave) y las preguntas de evaluación.
 
    app.js NUNCA debe tener módulos, preguntas, textos ni videos
    escritos "a mano": todo se genera dinámicamente a partir de
@@ -11,6 +12,9 @@
    CÓMO CONFIGURAR:
    - Para cambiar el nombre del curso, la calificación mínima o
      el máximo de intentos: edita las propiedades de primer nivel.
+   - Para editar la pantalla de bienvenida: edita "bienvenida".
+   - Para editar las opciones de "Tipo de participante": edita
+     "registro.tiposParticipante".
    - Para cambiar un video: sustituye "PEGAR_URL_VIDEO_N" por la
      URL real (YouTube, Vimeo, Stream o archivo .mp4 directo).
    - Para editar/agregar/quitar un módulo: modifica el arreglo
@@ -32,9 +36,9 @@ window.APP_MODE = "demo";
 window.COURSE_CONFIG = {
   cursoID: "LEG-001",
   nombreCurso: "Código de Ética",
-  versionCurso: "1.0",
+  versionCurso: "2.0",
 
-  // Calificación mínima (%) para aprobar la evaluación demo.
+  // Calificación mínima (%) para aprobar la evaluación.
   calificacionMinima: 85,
 
   // Número máximo de intentos permitidos para el examen.
@@ -42,6 +46,27 @@ window.COURSE_CONFIG = {
 
   // Debe coincidir con la cantidad de módulos que tengan video.
   totalVideos: 6,
+
+  /* -------------------------------------------------------
+     Pantalla de bienvenida (antes del registro).
+     Los requisitos (100% de videos, calificación mínima y
+     máximo de intentos) se construyen dinámicamente en app.js
+     a partir de totalVideos / calificacionMinima / maximoIntentos
+     de arriba, para no repetir esos números en dos lugares.
+     ------------------------------------------------------- */
+  bienvenida: {
+    titulo: "Curso Código de Ética",
+    mensaje: "Te damos la bienvenida al curso de capacitación en el Código de Ética para Asociados de Negocio de INTER-CON Servicios de Seguridad Privada.",
+    objetivo: "Conocer y comprender los principios de conducta, cumplimiento y ética empresarial que INTER-CON espera de sus colaboradores, socios comerciales, proveedores y clientes.",
+    duracionEstimada: "20-25 minutos"
+  },
+
+  /* -------------------------------------------------------
+     Formulario de registro previo al curso.
+     ------------------------------------------------------- */
+  registro: {
+    tiposParticipante: ["Empleado", "Proveedor", "Cliente", "Contratista", "Otro"]
+  },
 
   modulos: [
     {
@@ -154,83 +179,118 @@ window.COURSE_CONFIG = {
     }
   ],
 
+  /* -------------------------------------------------------
+     Evaluación final (10 preguntas validadas).
+     ------------------------------------------------------- */
   evaluacion: {
     preguntas: [
       {
         id: "q1",
-        moduloId: 2,
-        demo: true,
-        etiquetaDemo: "Pregunta demo — reemplazar por pregunta validada por Compliance",
-        pregunta: "Según el Código, ¿cuál es la jornada laboral regular máxima por semana?",
+        pregunta: "¿Cuál es el principal objetivo del Código de Ética de INTER-CON?",
         opciones: [
-          { valor: "a", texto: "40 horas" },
-          { valor: "b", texto: "48 horas" },
-          { valor: "c", texto: "60 horas" }
+          { valor: "a", texto: "Aumentar las ventas." },
+          { valor: "b", texto: "Guiar la conducta ética de colaboradores, clientes y proveedores." },
+          { valor: "c", texto: "Reducir costos." },
+          { valor: "d", texto: "Evaluar el desempeño." }
         ],
         correcta: "b"
       },
       {
         id: "q2",
-        moduloId: 2,
-        demo: true,
-        etiquetaDemo: "Pregunta demo — reemplazar por pregunta validada por Compliance",
-        pregunta: "¿Cuál es la edad mínima por debajo de la cual está prohibido totalmente cualquier tipo de ocupación?",
+        pregunta: "Si conoces una posible violación al Código de Ética, ¿qué debes hacer?",
         opciones: [
-          { valor: "a", texto: "12 años" },
-          { valor: "b", texto: "14 años" },
-          { valor: "c", texto: "15 años" }
+          { valor: "a", texto: "Ignorarla." },
+          { valor: "b", texto: "Comentarla con otros compañeros." },
+          { valor: "c", texto: "Reportarla por los medios establecidos." },
+          { valor: "d", texto: "Publicarla en redes sociales." }
         ],
         correcta: "c"
       },
       {
         id: "q3",
-        moduloId: 3,
-        demo: true,
-        etiquetaDemo: "Pregunta demo — reemplazar por pregunta validada por Compliance",
-        pregunta: "¿Qué se debe proveer cuando los peligros en el entorno de trabajo no puedan controlarse de otra forma?",
+        pregunta: "¿Qué significa actuar con integridad?",
         opciones: [
-          { valor: "a", texto: "Equipo de protección personal (EPP) apropiado" },
-          { valor: "b", texto: "Un bono económico adicional" },
-          { valor: "c", texto: "Ninguna medida especial" }
+          { valor: "a", texto: "Obtener beneficios personales." },
+          { valor: "b", texto: "Actuar con honestidad, transparencia y ética." },
+          { valor: "c", texto: "Hacer lo que la mayoría haga." },
+          { valor: "d", texto: "Evitar responsabilidades." }
         ],
-        correcta: "a"
+        correcta: "b"
       },
       {
         id: "q4",
-        moduloId: 4,
-        demo: true,
-        etiquetaDemo: "Pregunta demo — reemplazar por pregunta validada por Compliance",
-        pregunta: "De acuerdo con los principios de Ética Empresarial, ¿qué se debe hacer ante un posible conflicto de interés?",
+        pregunta: "¿Qué es un conflicto de interés?",
         opciones: [
-          { valor: "a", texto: "Tomar decisiones por consideraciones objetivas y firmar el formulario correspondiente" },
-          { valor: "b", texto: "Resolverlo de manera informal sin documentarlo" },
-          { valor: "c", texto: "Ignorarlo si no afecta directamente a la empresa" }
+          { valor: "a", texto: "Un desacuerdo entre compañeros." },
+          { valor: "b", texto: "Cuando los intereses personales pueden influir en decisiones laborales." },
+          { valor: "c", texto: "Un problema con un cliente." },
+          { valor: "d", texto: "Una diferencia de opinión." }
         ],
-        correcta: "a"
+        correcta: "b"
       },
       {
         id: "q5",
-        moduloId: 5,
-        demo: true,
-        etiquetaDemo: "Pregunta demo — reemplazar por pregunta validada por Compliance",
-        pregunta: "En materia ambiental, ¿qué se espera de los socios comerciales de INTER-CON?",
+        pregunta: "¿Qué debes hacer si identificas un posible conflicto de interés?",
         opciones: [
-          { valor: "a", texto: "No tienen responsabilidad ambiental alguna" },
-          { valor: "b", texto: "Solo deben reportar accidentes graves" },
-          { valor: "c", texto: "Cumplir la normativa, manejar sustancias peligrosas de forma segura y cumplir restricciones de producto" }
+          { valor: "a", texto: "Ocultarlo." },
+          { valor: "b", texto: "Informarlo para su evaluación." },
+          { valor: "c", texto: "Esperar a que alguien más lo reporte." },
+          { valor: "d", texto: "Resolverlo por tu cuenta." }
+        ],
+        correcta: "b"
+      },
+      {
+        id: "q6",
+        pregunta: "La información confidencial de INTER-CON y de sus clientes debe:",
+        opciones: [
+          { valor: "a", texto: "Compartirse con cualquier compañero." },
+          { valor: "b", texto: "Publicarse cuando sea útil." },
+          { valor: "c", texto: "Utilizarse únicamente para fines laborales y por personas autorizadas." },
+          { valor: "d", texto: "Enviarse por cualquier medio." }
         ],
         correcta: "c"
       },
       {
-        id: "q6",
-        moduloId: 6,
-        demo: true,
-        etiquetaDemo: "Pregunta demo — reemplazar por pregunta validada por Compliance",
-        pregunta: "¿A través de qué medios se puede reportar una violación al Código de Ética?",
+        id: "q7",
+        pregunta: "¿Cuál es la postura de INTER-CON frente al soborno y la corrupción?",
         opciones: [
-          { valor: "a", texto: "Únicamente en juntas presenciales" },
-          { valor: "b", texto: "Correo electrónico o teléfono del Canal Ético" },
-          { valor: "c", texto: "No existe un canal formal" }
+          { valor: "a", texto: "Se permiten en algunos casos." },
+          { valor: "b", texto: "Dependen del cliente." },
+          { valor: "c", texto: "Existe una política de cero tolerancia." },
+          { valor: "d", texto: "Solo aplican para directivos." }
+        ],
+        correcta: "c"
+      },
+      {
+        id: "q8",
+        pregunta: "¿Qué tipo de ambiente promueve INTER-CON?",
+        opciones: [
+          { valor: "a", texto: "Competitivo y excluyente." },
+          { valor: "b", texto: "Solo para personal administrativo." },
+          { valor: "c", texto: "Respetuoso, inclusivo y libre de discriminación y acoso." },
+          { valor: "d", texto: "Basado en jerarquías estrictas." }
+        ],
+        correcta: "c"
+      },
+      {
+        id: "q9",
+        pregunta: "¿Quiénes deben cumplir el Código de Ética?",
+        opciones: [
+          { valor: "a", texto: "Solo los directivos." },
+          { valor: "b", texto: "Solo Recursos Humanos." },
+          { valor: "c", texto: "Todos los colaboradores." },
+          { valor: "d", texto: "Solo el personal operativo." }
+        ],
+        correcta: "c"
+      },
+      {
+        id: "q10",
+        pregunta: "¿Por qué es importante cumplir el Código de Ética?",
+        opciones: [
+          { valor: "a", texto: "Para evitar capacitaciones." },
+          { valor: "b", texto: "Porque protege a la empresa, a los colaboradores, clientes y proveedores, fortaleciendo la confianza y el cumplimiento." },
+          { valor: "c", texto: "Para recibir bonos." },
+          { valor: "d", texto: "Solo para cumplir un requisito administrativo." }
         ],
         correcta: "b"
       }
