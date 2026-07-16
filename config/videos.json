@@ -1,0 +1,11 @@
+{
+  "_comentario": "URLs de video por curso y por modulo. Mientras el valor empiece con 'PEGAR_' la app muestra un reproductor de 'video disponible proximamente' sin romperse. En produccion, este archivo puede sustituirse por la respuesta de GET /videos (ver services/api.js).",
+  "LEG-001": {
+    "1": "PEGAR_URL_VIDEO_1",
+    "2": "PEGAR_URL_VIDEO_2",
+    "3": "PEGAR_URL_VIDEO_3",
+    "4": "PEGAR_URL_VIDEO_4",
+    "5": "PEGAR_URL_VIDEO_5",
+    "6": "PEGAR_URL_VIDEO_6"
+  }
+}

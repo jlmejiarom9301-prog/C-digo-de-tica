@@ -1,0 +1,230 @@
+/* =========================================================
+   COMPONENTS.CSS — Botones, tarjetas, badges, progress bar,
+   nav links, toast, skeleton, modal. Componentes reutilizables
+   usados por multiples vistas.
+   ========================================================= */
+
+/* ---- Botones ---- */
+.ica-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ica-sp-2);
+  padding: 12px 22px;
+  border-radius: var(--ica-radius-pill);
+  font-weight: 600;
+  font-size: var(--ica-fs-sm);
+  border: 1.5px solid transparent;
+  transition: transform var(--ica-dur-fast) var(--ica-ease),
+              box-shadow var(--ica-dur-fast) var(--ica-ease),
+              background var(--ica-dur-fast) var(--ica-ease),
+              border-color var(--ica-dur-fast) var(--ica-ease);
+  white-space: nowrap;
+}
+.ica-btn:active { transform: scale(0.98); }
+.ica-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+.ica-btn-lg { padding: 15px 30px; font-size: var(--ica-fs-md); }
+.ica-btn-sm { padding: 8px 16px; font-size: var(--ica-fs-xs); }
+.ica-btn-block { width: 100%; }
+
+.ica-btn-primary { background: var(--ica-gold-500); color: var(--ica-navy-950); }
+.ica-btn-primary:hover:not(:disabled) { background: var(--ica-gold-400); box-shadow: 0 10px 26px rgba(201,162,39,0.32); transform: translateY(-1px); }
+
+.ica-btn-navy { background: var(--ica-navy-900); color: var(--ica-white); }
+.ica-btn-navy:hover:not(:disabled) { background: var(--ica-navy-800); box-shadow: var(--ica-shadow-md); transform: translateY(-1px); }
+
+.ica-btn-ghost { background: transparent; color: var(--ica-navy-800); border-color: var(--ica-ink-100); }
+.ica-btn-ghost:hover:not(:disabled) { background: var(--ica-navy-50); border-color: var(--ica-navy-100); }
+
+.ica-btn-ghost-light { background: rgba(255,255,255,0.08); color: var(--ica-white); border-color: rgba(255,255,255,0.28); }
+.ica-btn-ghost-light:hover:not(:disabled) { background: rgba(255,255,255,0.16); }
+
+.ica-btn-outline-gold { background: transparent; color: var(--ica-gold-600); border-color: var(--ica-gold-500); }
+.ica-btn-outline-gold:hover:not(:disabled) { background: var(--ica-gold-100); }
+
+.ica-btn-danger-ghost { background: transparent; color: var(--ica-danger); border-color: rgba(214,69,69,0.4); }
+.ica-btn-danger-ghost:hover:not(:disabled) { background: var(--ica-danger-bg); }
+
+/* ---- Tarjetas ---- */
+.ica-card {
+  background: var(--ica-surface);
+  border: 1px solid var(--ica-ink-100);
+  border-radius: var(--ica-radius-lg);
+  box-shadow: var(--ica-shadow-sm);
+  transition: transform var(--ica-dur-base) var(--ica-ease), box-shadow var(--ica-dur-base) var(--ica-ease), border-color var(--ica-dur-base) var(--ica-ease);
+}
+.ica-card-hover:hover { transform: translateY(-5px); box-shadow: var(--ica-shadow-lg); border-color: var(--ica-gold-500); }
+.ica-card-pad { padding: var(--ica-sp-6); }
+
+/* ---- Badges / pills de estado ---- */
+.ica-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 5px 12px;
+  border-radius: var(--ica-radius-pill);
+}
+.ica-badge-pendiente { background: var(--ica-ink-100); color: var(--ica-ink-700); }
+.ica-badge-progreso { background: var(--ica-info-bg); color: var(--ica-info); }
+.ica-badge-completado { background: var(--ica-success-bg); color: var(--ica-success); }
+.ica-badge-bloqueado { background: var(--ica-ink-50); color: var(--ica-ink-300); }
+.ica-badge-gold { background: var(--ica-gold-100); color: var(--ica-gold-600); }
+.ica-badge-proximamente { background: var(--ica-warning-bg); color: var(--ica-warning); }
+
+/* ---- Barra de progreso ---- */
+.ica-progress-track {
+  width: 100%;
+  height: 10px;
+  border-radius: var(--ica-radius-pill);
+  background: var(--ica-ink-100);
+  overflow: hidden;
+  position: relative;
+}
+.ica-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--ica-radius-pill);
+  background: linear-gradient(90deg, var(--ica-gold-500), var(--ica-gold-400));
+  background-size: 32px 32px;
+  transition: width 700ms var(--ica-ease);
+}
+.ica-progress-fill.is-animated {
+  background-image: linear-gradient(45deg, rgba(255,255,255,0.25) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.25) 75%, transparent 75%, transparent);
+  animation: ica-progress-stripes 1.1s linear infinite;
+}
+.ica-progress-top-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px;
+  background: rgba(11,31,58,0.06); z-index: var(--ica-z-toast);
+}
+.ica-progress-top-fill { height: 100%; width: 0%; background: var(--ica-gold-500); transition: width var(--ica-dur-base) var(--ica-ease); }
+
+/* ---- Links de navegacion (sidebar) ---- */
+.ica-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--ica-sp-3);
+  padding: 11px 14px;
+  border-radius: var(--ica-radius-md);
+  font-size: var(--ica-fs-sm);
+  font-weight: 500;
+  color: rgba(255,255,255,0.68);
+  transition: background var(--ica-dur-fast) ease, color var(--ica-dur-fast) ease, transform var(--ica-dur-fast) ease;
+}
+.ica-nav-link i { width: 18px; text-align: center; color: var(--ica-gold-400); font-size: 15px; }
+.ica-nav-link:hover { background: rgba(255,255,255,0.08); color: var(--ica-white); transform: translateX(2px); }
+.ica-nav-link.is-active { background: rgba(201,162,39,0.16); color: var(--ica-white); box-shadow: inset 3px 0 0 var(--ica-gold-500); }
+.ica-nav-link.is-disabled { opacity: 0.4; pointer-events: none; }
+
+/* ---- Toast ---- */
+.ica-toast-region {
+  position: fixed;
+  bottom: var(--ica-sp-5);
+  right: var(--ica-sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ica-sp-2);
+  z-index: var(--ica-z-toast);
+  max-width: min(92vw, 380px);
+}
+.ica-toast {
+  background: var(--ica-navy-900);
+  color: var(--ica-white);
+  border: 1px solid rgba(201,162,39,0.4);
+  border-radius: var(--ica-radius-md);
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  box-shadow: var(--ica-shadow-lg);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  animation: ica-slide-up var(--ica-dur-base) var(--ica-ease) both;
+}
+.ica-toast i { color: var(--ica-gold-400); margin-top: 2px; }
+.ica-toast-warning { border-color: rgba(214,69,69,0.5); }
+
+/* ---- Skeleton loaders ---- */
+.ica-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--ica-ink-100);
+  border-radius: var(--ica-radius-sm);
+}
+.ica-skeleton::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
+  animation: ica-shimmer 1.5s infinite;
+}
+.ica-skeleton-text { height: 14px; margin-bottom: 8px; width: 100%; }
+.ica-skeleton-title { height: 22px; width: 60%; margin-bottom: 14px; }
+.ica-skeleton-card { height: 148px; border-radius: var(--ica-radius-lg); }
+
+/* ---- Spinner ---- */
+.ica-spinner {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 3px solid rgba(201,162,39,0.25);
+  border-top-color: var(--ica-gold-500);
+  animation: ica-spin 700ms linear infinite;
+}
+
+/* ---- Iconos circulares ---- */
+.ica-icon-circle {
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  background: var(--ica-navy-900);
+  color: var(--ica-gold-400);
+  flex-shrink: 0;
+}
+.ica-icon-circle-lg { width: 60px; height: 60px; font-size: 22px; border-radius: 18px; }
+
+/* ---- Divisor ---- */
+.ica-divider { height: 1px; background: var(--ica-ink-100); border: none; margin: var(--ica-sp-6) 0; }
+
+/* ---- Formularios ---- */
+.ica-field { display: flex; flex-direction: column; gap: 6px; }
+.ica-field label { font-size: 13px; font-weight: 600; color: var(--ica-ink-700); }
+.ica-field label .ica-optional { font-weight: 400; color: var(--ica-ink-300); font-size: 11.5px; margin-left: 4px; }
+.ica-field input,
+.ica-field select {
+  font-family: inherit;
+  font-size: 14.5px;
+  padding: 12px 14px;
+  border-radius: var(--ica-radius-sm);
+  border: 1.5px solid var(--ica-ink-100);
+  background: var(--ica-white);
+  color: var(--ica-ink-900);
+  transition: border-color var(--ica-dur-fast) ease, box-shadow var(--ica-dur-fast) ease;
+}
+.ica-field input:focus,
+.ica-field select:focus { outline: none; border-color: var(--ica-gold-500); box-shadow: var(--ica-shadow-focus); }
+.ica-field input:disabled,
+.ica-field input:read-only { background: var(--ica-ink-50); color: var(--ica-ink-500); }
+.ica-field input.is-error,
+.ica-field select.is-error { border-color: var(--ica-danger); }
+.ica-field-error-msg { font-size: 12px; color: var(--ica-danger); }
+.ica-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ica-sp-4); }
+
+/* ---- Modal ---- */
+.ica-modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(5,14,31,0.55);
+  display: flex; align-items: center; justify-content: center;
+  z-index: var(--ica-z-modal);
+  padding: var(--ica-sp-4);
+}
+.ica-modal {
+  background: var(--ica-white);
+  border-radius: var(--ica-radius-lg);
+  padding: var(--ica-sp-8);
+  max-width: 440px; width: 100%;
+  box-shadow: var(--ica-shadow-lg);
+  animation: ica-scale-in var(--ica-dur-base) var(--ica-ease) both;
+}

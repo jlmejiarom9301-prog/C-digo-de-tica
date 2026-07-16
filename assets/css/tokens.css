@@ -1,0 +1,108 @@
+/* =========================================================
+   TOKENS.CSS — Design tokens de INTER-CON Academy
+   Paleta institucional, tipografia, espaciado, radios,
+   sombras y variables de animacion. Todo el resto del CSS
+   consume estas variables; no se deben repetir valores
+   "a mano" en otros archivos.
+   ========================================================= */
+
+:root {
+  /* ---- Color institucional INTER-CON ---- */
+  --ica-navy-950: #050e1f;
+  --ica-navy-900: #0b1f3a;
+  --ica-navy-800: #122a4d;
+  --ica-navy-700: #1b3a6b;
+  --ica-navy-600: #26497f;
+  --ica-navy-500: #3a5f9c;
+  --ica-navy-100: #e8edf6;
+  --ica-navy-50:  #f4f7fb;
+
+  --ica-gold-600: #a9821b;
+  --ica-gold-500: #c9a227;
+  --ica-gold-400: #d9b84a;
+  --ica-gold-100: #f8efd2;
+
+  --ica-success: #1f9d5c;
+  --ica-success-bg: #e6f7ee;
+  --ica-danger: #d64545;
+  --ica-danger-bg: #fdecec;
+  --ica-warning: #b3791e;
+  --ica-warning-bg: #fbf1de;
+  --ica-info: #2563a8;
+  --ica-info-bg: #e9f2fb;
+
+  --ica-white: #ffffff;
+  --ica-ink-900: #14181f;
+  --ica-ink-700: #3c4453;
+  --ica-ink-500: #6b7386;
+  --ica-ink-300: #a4acbd;
+  --ica-ink-100: #e3e7ef;
+  --ica-ink-50:  #f5f7fa;
+
+  /* ---- Superficies / glass ---- */
+  --ica-surface: #ffffff;
+  --ica-surface-alt: var(--ica-ink-50);
+  --ica-glass-bg: rgba(255, 255, 255, 0.66);
+  --ica-glass-border: rgba(255, 255, 255, 0.35);
+  --ica-glass-bg-dark: rgba(11, 31, 58, 0.55);
+  --ica-glass-border-dark: rgba(255, 255, 255, 0.12);
+
+  /* ---- Tipografia ---- */
+  --ica-font-head: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --ica-font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  --ica-fs-xs: 12px;
+  --ica-fs-sm: 13.5px;
+  --ica-fs-md: 15px;
+  --ica-fs-lg: 18px;
+  --ica-fs-xl: 22px;
+  --ica-fs-2xl: 28px;
+  --ica-fs-3xl: 36px;
+  --ica-fs-4xl: 48px;
+
+  /* ---- Espaciado (escala de 4px) ---- */
+  --ica-sp-1: 4px;
+  --ica-sp-2: 8px;
+  --ica-sp-3: 12px;
+  --ica-sp-4: 16px;
+  --ica-sp-5: 20px;
+  --ica-sp-6: 24px;
+  --ica-sp-8: 32px;
+  --ica-sp-10: 40px;
+  --ica-sp-12: 48px;
+  --ica-sp-16: 64px;
+  --ica-sp-20: 80px;
+
+  /* ---- Radios ---- */
+  --ica-radius-sm: 8px;
+  --ica-radius-md: 14px;
+  --ica-radius-lg: 20px;
+  --ica-radius-xl: 28px;
+  --ica-radius-pill: 999px;
+
+  /* ---- Sombras (ligeras, tipo Fluent) ---- */
+  --ica-shadow-xs: 0 1px 2px rgba(11, 31, 58, 0.06);
+  --ica-shadow-sm: 0 2px 8px rgba(11, 31, 58, 0.07);
+  --ica-shadow-md: 0 8px 24px rgba(11, 31, 58, 0.10);
+  --ica-shadow-lg: 0 18px 44px rgba(11, 31, 58, 0.14);
+  --ica-shadow-focus: 0 0 0 3px rgba(201, 162, 39, 0.35);
+
+  /* ---- Layout ---- */
+  --ica-sidebar-w: 264px;
+  --ica-sidebar-w-collapsed: 84px;
+  --ica-topbar-h: 64px;
+  --ica-content-max: 1180px;
+
+  /* ---- Movimiento ---- */
+  --ica-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ica-dur-fast: 150ms;
+  --ica-dur-base: 240ms;
+  --ica-dur-slow: 420ms;
+
+  /* ---- z-index ---- */
+  --ica-z-sidebar: 900;
+  --ica-z-topbar: 800;
+  --ica-z-overlay: 950;
+  --ica-z-toast: 1000;
+  --ica-z-modal: 1100;
+}

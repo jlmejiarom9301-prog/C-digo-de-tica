@@ -1,0 +1,117 @@
+/* =========================================================
+   LAYOUT.CSS — Shell de la aplicacion (topbar + sidebar +
+   contenido). Se aplica solo en las vistas "app" (dashboard,
+   modulo, evaluacion, resultado, certificado, perfil).
+   Landing y Registro usan un layout de pantalla completa.
+   ========================================================= */
+
+#app-root { min-height: 100vh; }
+
+/* ---- Layout de pantalla completa (landing / registro) ---- */
+.ica-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Shell con sidebar (vistas autenticadas) ---- */
+.ica-shell {
+  display: grid;
+  grid-template-columns: var(--ica-sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+.ica-sidebar {
+  grid-row: 1 / -1;
+  background: linear-gradient(185deg, var(--ica-navy-900), var(--ica-navy-950));
+  color: var(--ica-white);
+  display: flex;
+  flex-direction: column;
+  padding: var(--ica-sp-6) var(--ica-sp-4);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: var(--ica-z-sidebar);
+}
+
+.ica-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--ica-sp-3);
+  padding: var(--ica-sp-2) var(--ica-sp-2) var(--ica-sp-6);
+  margin-bottom: var(--ica-sp-4);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.ica-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ica-sp-1);
+  flex: 1;
+}
+
+.ica-sidebar-footer {
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding-top: var(--ica-sp-4);
+  font-size: var(--ica-fs-xs);
+  color: rgba(255,255,255,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ica-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ica-topbar {
+  height: var(--ica-topbar-h);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--ica-sp-5);
+  position: sticky;
+  top: 0;
+  z-index: var(--ica-z-topbar);
+  background: var(--ica-glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--ica-ink-100);
+}
+
+.ica-content {
+  padding: var(--ica-sp-8) var(--ica-sp-8) var(--ica-sp-16);
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ica-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 14, 31, 0.55);
+  z-index: var(--ica-z-overlay);
+}
+
+/* ---- Responsive: sidebar colapsa a menu movil ---- */
+@media (max-width: 980px) {
+  .ica-shell { grid-template-columns: 1fr; }
+  .ica-sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: min(84vw, 300px);
+    transform: translateX(-104%);
+    transition: transform var(--ica-dur-base) var(--ica-ease);
+  }
+  .ica-sidebar.is-open { transform: translateX(0); box-shadow: var(--ica-shadow-lg); }
+  .ica-topbar { display: flex; }
+  .ica-nav-overlay.is-open { display: block; }
+  .ica-content { padding: var(--ica-sp-6) var(--ica-sp-4) var(--ica-sp-12); }
+}
+
+@media (max-width: 600px) {
+  .ica-content { padding: var(--ica-sp-5) var(--ica-sp-3) var(--ica-sp-10); }
+}

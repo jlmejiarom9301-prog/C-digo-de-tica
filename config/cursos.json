@@ -1,0 +1,402 @@
+{
+  "plataforma": {
+    "nombre": "INTER-CON Academy",
+    "descripcion": "Plataforma corporativa de capacitación de INTER-CON Servicios de Seguridad Privada, S.A. de C.V.",
+    "cursoDestacado": "LEG-001"
+  },
+  "cursos": [
+    {
+      "id": "LEG-001",
+      "nombre": "Código de Ética",
+      "descripcionCorta": "Principios de conducta, cumplimiento y ética empresarial para colaboradores, socios comerciales, proveedores y clientes.",
+      "descripcion": "Te damos la bienvenida al curso de capacitación en el Código de Ética para Asociados de Negocio de INTER-CON Servicios de Seguridad Privada. Conocerás los principios de conducta, cumplimiento y ética empresarial que INTER-CON espera de sus colaboradores, socios comerciales, proveedores y clientes.",
+      "objetivo": "Conocer y comprender los principios de conducta, cumplimiento y ética empresarial que INTER-CON espera de sus colaboradores, socios comerciales, proveedores y clientes.",
+      "categoria": "Cumplimiento",
+      "imagen": "assets/img/hero-illustration.svg",
+      "color": "#0b1f3a",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-scale-balanced",
+      "duracionEstimada": "20-25 minutos",
+      "activo": true,
+      "visible": true,
+      "version": "3.0",
+      "calificacionMinima": 85,
+      "maximoIntentos": 5,
+      "totalVideos": 6,
+      "certificadoOficial": true,
+      "beneficios": [
+        { "icono": "fa-solid fa-certificate", "texto": "Certificado oficial de INTER-CON al finalizar" },
+        { "icono": "fa-solid fa-clock", "texto": "Avanza a tu propio ritmo, en cualquier dispositivo" },
+        { "icono": "fa-solid fa-clipboard-check", "texto": "Evaluación final con retroalimentación inmediata" },
+        { "icono": "fa-solid fa-shield-halved", "texto": "Contenido oficial validado por Compliance" }
+      ],
+      "queAprenderas": [
+        { "icono": "fa-solid fa-diagram-project", "texto": "El alcance del Código y a quién aplica" },
+        { "icono": "fa-solid fa-people-group", "texto": "Condiciones laborales y trato digno" },
+        { "icono": "fa-solid fa-shield-heart", "texto": "Salud y seguridad en el entorno de trabajo" },
+        { "icono": "fa-solid fa-scale-balanced", "texto": "Los 10 principios de ética empresarial" },
+        { "icono": "fa-solid fa-leaf", "texto": "Responsabilidad ambiental" },
+        { "icono": "fa-solid fa-comment-dots", "texto": "Cómo usar el Canal de Denuncia" }
+      ],
+      "modulos": [
+        {
+          "id": 1,
+          "orden": 1,
+          "titulo": "Introducción y Alcance del Código",
+          "subtitulo": "Por qué existe este Código y a quién aplica",
+          "descripcion": "Conoce el objetivo de la capacitación, la misión de INTER-CON y a quiénes aplica este Código: socios comerciales, empleados, proveedores y empresas suministradoras de servicios.",
+          "duracionEstimada": "2 minutos",
+          "color": "#0b1f3a",
+          "icono": "fa-solid fa-diagram-project",
+          "activo": true,
+          "visible": true,
+          "bloqueado": false,
+          "puntosClave": [
+            "Aplica a socios comerciales, sus empleados, proveedores y empresas suministradoras de servicios.",
+            "Basado en el Pacto Global de la ONU y las convenciones de la OIT.",
+            "El cumplimiento de este Código es criterio para elegir y conservar a un socio comercial."
+          ]
+        },
+        {
+          "id": 2,
+          "orden": 2,
+          "titulo": "Condiciones Laborales",
+          "subtitulo": "Dignidad humana y trato justo",
+          "descripcion": "Principios sobre libre elección de empleo, prohibición absoluta de trabajo forzado e infantil, protección a menores y condiciones generales de empleo.",
+          "duracionEstimada": "3 minutos",
+          "color": "#1b3a6b",
+          "icono": "fa-solid fa-people-group",
+          "activo": true,
+          "visible": true,
+          "bloqueado": true,
+          "puntosClave": [
+            "Jornada regular máxima de 48 horas por semana y 24 horas de descanso cada 7 días.",
+            "Prohibición absoluta de trabajos forzados y de trabajo infantil (menores de 15 años).",
+            "Cero tolerancia al acoso, abuso, castigo corporal, coacción o discriminación."
+          ]
+        },
+        {
+          "id": 3,
+          "orden": 3,
+          "titulo": "Salud y Seguridad",
+          "subtitulo": "Un entorno de trabajo seguro",
+          "descripcion": "Cómo cumplir la normativa de seguridad, detectar e informar riesgos, y actuar correctamente ante posibles situaciones de emergencia.",
+          "duracionEstimada": "2 minutos",
+          "color": "#26497f",
+          "icono": "fa-solid fa-shield-heart",
+          "activo": true,
+          "visible": true,
+          "bloqueado": true,
+          "puntosClave": [
+            "Cumplir sistemas y procesos de protección laboral y sanitaria.",
+            "Detectar, valorar e informar riesgos, e instruir a los empleados.",
+            "Proveer equipo de protección personal (EPP) cuando los peligros no puedan controlarse."
+          ]
+        },
+        {
+          "id": 4,
+          "orden": 4,
+          "titulo": "Ética Empresarial",
+          "subtitulo": "Diez principios rectores",
+          "descripcion": "Los diez principios para operar con absoluta integridad: fidelidad a las leyes, anticorrupción, competencia justa, conflicto de interés, confidencialidad y más.",
+          "duracionEstimada": "4 minutos",
+          "color": "#c9a227",
+          "icono": "fa-solid fa-scale-balanced",
+          "activo": true,
+          "visible": true,
+          "bloqueado": true,
+          "puntosClave": [
+            "Cero tolerancia al soborno, la corrupción y la malversación.",
+            "Manejo responsable de conflictos de interés e información confidencial.",
+            "Cumplimiento en importación/exportación, publicación de información y propiedad intelectual."
+          ]
+        },
+        {
+          "id": 5,
+          "orden": 5,
+          "titulo": "Medio Ambiente",
+          "subtitulo": "Responsabilidad en toda la cadena de valor",
+          "descripcion": "Nuestro compromiso con la normativa ambiental, el manejo seguro de sustancias peligrosas y las restricciones de producto.",
+          "duracionEstimada": "2 minutos",
+          "color": "#2f6b4f",
+          "icono": "fa-solid fa-leaf",
+          "activo": true,
+          "visible": true,
+          "bloqueado": true,
+          "puntosClave": [
+            "Cumplir la normativa ambiental aplicable e instruir a los trabajadores.",
+            "Identificar y manejar de forma segura las sustancias peligrosas.",
+            "Cumplir restricciones de producto y criterios de reciclaje/eliminación."
+          ]
+        },
+        {
+          "id": 6,
+          "orden": 6,
+          "titulo": "Canal de Denuncia",
+          "subtitulo": "Confidencial y sin represalias",
+          "descripcion": "Cómo reportar cualquier acto que viole este Código a través del Canal Ético de INTER-CON, con confidencialidad garantizada.",
+          "duracionEstimada": "1 minuto",
+          "color": "#6b1f2a",
+          "icono": "fa-solid fa-comment-dots",
+          "activo": true,
+          "visible": true,
+          "bloqueado": true,
+          "puntosClave": [
+            "Cualquier proveedor o socio comercial puede reportar violaciones al Código.",
+            "Disponible por correo electrónico y teléfono.",
+            "Confidencialidad garantizada y sin represalias."
+          ]
+        }
+      ],
+      "evaluacion": {
+        "preguntas": [
+          {
+            "id": "q1",
+            "pregunta": "¿Cuál es el principal objetivo del Código de Ética de INTER-CON?",
+            "opciones": [
+              { "valor": "a", "texto": "Aumentar las ventas." },
+              { "valor": "b", "texto": "Guiar la conducta ética de colaboradores, clientes y proveedores." },
+              { "valor": "c", "texto": "Reducir costos." },
+              { "valor": "d", "texto": "Evaluar el desempeño." }
+            ],
+            "correcta": "b"
+          },
+          {
+            "id": "q2",
+            "pregunta": "Si conoces una posible violación al Código de Ética, ¿qué debes hacer?",
+            "opciones": [
+              { "valor": "a", "texto": "Ignorarla." },
+              { "valor": "b", "texto": "Comentarla con otros compañeros." },
+              { "valor": "c", "texto": "Reportarla por los medios establecidos." },
+              { "valor": "d", "texto": "Publicarla en redes sociales." }
+            ],
+            "correcta": "c"
+          },
+          {
+            "id": "q3",
+            "pregunta": "¿Qué significa actuar con integridad?",
+            "opciones": [
+              { "valor": "a", "texto": "Obtener beneficios personales." },
+              { "valor": "b", "texto": "Actuar con honestidad, transparencia y ética." },
+              { "valor": "c", "texto": "Hacer lo que la mayoría haga." },
+              { "valor": "d", "texto": "Evitar responsabilidades." }
+            ],
+            "correcta": "b"
+          },
+          {
+            "id": "q4",
+            "pregunta": "¿Qué es un conflicto de interés?",
+            "opciones": [
+              { "valor": "a", "texto": "Un desacuerdo entre compañeros." },
+              { "valor": "b", "texto": "Cuando los intereses personales pueden influir en decisiones laborales." },
+              { "valor": "c", "texto": "Un problema con un cliente." },
+              { "valor": "d", "texto": "Una diferencia de opinión." }
+            ],
+            "correcta": "b"
+          },
+          {
+            "id": "q5",
+            "pregunta": "¿Qué debes hacer si identificas un posible conflicto de interés?",
+            "opciones": [
+              { "valor": "a", "texto": "Ocultarlo." },
+              { "valor": "b", "texto": "Informarlo para su evaluación." },
+              { "valor": "c", "texto": "Esperar a que alguien más lo reporte." },
+              { "valor": "d", "texto": "Resolverlo por tu cuenta." }
+            ],
+            "correcta": "b"
+          },
+          {
+            "id": "q6",
+            "pregunta": "La información confidencial de INTER-CON y de sus clientes debe:",
+            "opciones": [
+              { "valor": "a", "texto": "Compartirse con cualquier compañero." },
+              { "valor": "b", "texto": "Publicarse cuando sea útil." },
+              { "valor": "c", "texto": "Utilizarse únicamente para fines laborales y por personas autorizadas." },
+              { "valor": "d", "texto": "Enviarse por cualquier medio." }
+            ],
+            "correcta": "c"
+          },
+          {
+            "id": "q7",
+            "pregunta": "¿Cuál es la postura de INTER-CON frente al soborno y la corrupción?",
+            "opciones": [
+              { "valor": "a", "texto": "Se permiten en algunos casos." },
+              { "valor": "b", "texto": "Dependen del cliente." },
+              { "valor": "c", "texto": "Existe una política de cero tolerancia." },
+              { "valor": "d", "texto": "Solo aplican para directivos." }
+            ],
+            "correcta": "c"
+          },
+          {
+            "id": "q8",
+            "pregunta": "¿Qué tipo de ambiente promueve INTER-CON?",
+            "opciones": [
+              { "valor": "a", "texto": "Competitivo y excluyente." },
+              { "valor": "b", "texto": "Solo para personal administrativo." },
+              { "valor": "c", "texto": "Respetuoso, inclusivo y libre de discriminación y acoso." },
+              { "valor": "d", "texto": "Basado en jerarquías estrictas." }
+            ],
+            "correcta": "c"
+          },
+          {
+            "id": "q9",
+            "pregunta": "¿Quiénes deben cumplir el Código de Ética?",
+            "opciones": [
+              { "valor": "a", "texto": "Solo los directivos." },
+              { "valor": "b", "texto": "Solo Recursos Humanos." },
+              { "valor": "c", "texto": "Todos los colaboradores." },
+              { "valor": "d", "texto": "Solo el personal operativo." }
+            ],
+            "correcta": "c"
+          },
+          {
+            "id": "q10",
+            "pregunta": "¿Por qué es importante cumplir el Código de Ética?",
+            "opciones": [
+              { "valor": "a", "texto": "Para evitar capacitaciones." },
+              { "valor": "b", "texto": "Porque protege a la empresa, a los colaboradores, clientes y proveedores, fortaleciendo la confianza y el cumplimiento." },
+              { "valor": "c", "texto": "Para recibir bonos." },
+              { "valor": "d", "texto": "Solo para cumplir un requisito administrativo." }
+            ],
+            "correcta": "b"
+          }
+        ]
+      }
+    },
+    {
+      "id": "NOM-035",
+      "nombre": "NOM-035: Factores de Riesgo Psicosocial",
+      "descripcionCorta": "Identificación, análisis y prevención de factores de riesgo psicosocial en el trabajo.",
+      "categoria": "Seguridad y Salud",
+      "imagen": "",
+      "color": "#5b3a8a",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-brain",
+      "duracionEstimada": "Próximamente",
+      "activo": false,
+      "visible": true,
+      "modulos": [],
+      "evaluacion": { "preguntas": [] }
+    },
+    {
+      "id": "PC-001",
+      "nombre": "Protección Civil",
+      "descripcionCorta": "Prevención, respuesta y actuación ante emergencias y desastres.",
+      "categoria": "Seguridad y Salud",
+      "imagen": "",
+      "color": "#b3541e",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-truck-medical",
+      "duracionEstimada": "Próximamente",
+      "activo": false,
+      "visible": true,
+      "modulos": [],
+      "evaluacion": { "preguntas": [] }
+    },
+    {
+      "id": "SF-001",
+      "nombre": "Seguridad Física",
+      "descripcionCorta": "Protocolos y estándares de seguridad física operativa.",
+      "categoria": "Operación",
+      "imagen": "",
+      "color": "#1f4d3d",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-user-shield",
+      "duracionEstimada": "Próximamente",
+      "activo": false,
+      "visible": true,
+      "modulos": [],
+      "evaluacion": { "preguntas": [] }
+    },
+    {
+      "id": "SE-001",
+      "nombre": "Seguridad Electrónica",
+      "descripcionCorta": "Sistemas y tecnología aplicados a la seguridad electrónica.",
+      "categoria": "Operación",
+      "imagen": "",
+      "color": "#1f3a5f",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-video",
+      "duracionEstimada": "Próximamente",
+      "activo": false,
+      "visible": true,
+      "modulos": [],
+      "evaluacion": { "preguntas": [] }
+    },
+    {
+      "id": "CMP-001",
+      "nombre": "Compliance",
+      "descripcionCorta": "Cumplimiento normativo y regulatorio corporativo.",
+      "categoria": "Cumplimiento",
+      "imagen": "",
+      "color": "#0b1f3a",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-gavel",
+      "duracionEstimada": "Próximamente",
+      "activo": false,
+      "visible": true,
+      "modulos": [],
+      "evaluacion": { "preguntas": [] }
+    },
+    {
+      "id": "ANT-001",
+      "nombre": "Anticorrupción",
+      "descripcionCorta": "Prevención de sobornos y prácticas anticorrupción.",
+      "categoria": "Cumplimiento",
+      "imagen": "",
+      "color": "#7a1f2a",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-hand-back-fist",
+      "duracionEstimada": "Próximamente",
+      "activo": false,
+      "visible": true,
+      "modulos": [],
+      "evaluacion": { "preguntas": [] }
+    },
+    {
+      "id": "PLD-001",
+      "nombre": "Prevención de Lavado de Dinero",
+      "descripcionCorta": "Identificación y prevención de operaciones con recursos de procedencia ilícita.",
+      "categoria": "Cumplimiento",
+      "imagen": "",
+      "color": "#3a3a3a",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-money-bill-transfer",
+      "duracionEstimada": "Próximamente",
+      "activo": false,
+      "visible": true,
+      "modulos": [],
+      "evaluacion": { "preguntas": [] }
+    },
+    {
+      "id": "IND-001",
+      "nombre": "Inducción General",
+      "descripcionCorta": "Bienvenida y contexto general para nuevo personal de INTER-CON.",
+      "categoria": "Inducción",
+      "imagen": "",
+      "color": "#0e5c73",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-door-open",
+      "duracionEstimada": "Próximamente",
+      "activo": false,
+      "visible": true,
+      "modulos": [],
+      "evaluacion": { "preguntas": [] }
+    },
+    {
+      "id": "CLI-001",
+      "nombre": "Capacitación por Cliente",
+      "descripcionCorta": "Contenido específico configurable por cliente o cuenta.",
+      "categoria": "A la medida",
+      "imagen": "",
+      "color": "#4a4a4a",
+      "colorAcento": "#c9a227",
+      "icono": "fa-solid fa-building",
+      "duracionEstimada": "Próximamente",
+      "activo": false,
+      "visible": true,
+      "modulos": [],
+      "evaluacion": { "preguntas": [] }
+    }
+  ]
+}
